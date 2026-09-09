@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body { margin:0; background:#000; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Title" data-screen-label="01" data-speaker-notes="India auctions tens of thousands of crores of repossessed property a year. Nobody publishes what any of it sells for. We are building that dataset and selling the decisions it enables. Raising a pre-seed round." style="background:#000;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:120px 140px;display:flex;flex-direction:column;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:20px;">
+      <span style="width:64px;height:64px;border-radius:19px;background:linear-gradient(140deg,#0071e3 0%,#1aa3c8 55%,#14b87a 100%);display:flex;align-items:center;justify-content:center;">
+        <span style="width:26px;height:26px;background:#fff;transform:rotate(45deg);border-radius:5px;display:block;"></span>
+      </span>
+      <span style="font-size:44px;font-weight:600;letter-spacing:-0.03em;"><span style="color:#4da3f0;">bankauction</span><span style="color:#5cd6a0;">iq</span></span>
+    </div>
+    <div>
+      <h1 style="font-size:118px;line-height:1.02;font-weight:600;letter-spacing:-0.035em;margin:0 0 40px;max-width:20ch;">India auctions ₹31,000 crore of property a year. Nobody knows what it sells for.</h1>
+      <p style="font-size:40px;line-height:1.4;color:#a1a1a6;margin:0;max-width:44ch;">We are building the outcome dataset for Indian bank auctions — and monetising the decisions it makes possible.</p>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;font-size:26px;color:#8e8e93;">
+      <span>Pre-seed round · August 2026</span>
+      <span>Chennai · Bengaluru · Kerala · Hyderabad · Coimbatore</span>
+    </div>
+  </section>
+
+  <section data-label="Problem" data-screen-label="02" data-speaker-notes="Four aggregators report four different counts for the same city on the same day. That is the state of the market. And the number that actually matters — the hammer price — is published by nobody." style="background:#fff;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:110px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 34px;">The problem</div>
+    <h2 style="font-size:88px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 30px;max-width:24ch;">Ask four portals how many properties are for sale in Chennai.</h2>
+    <div style="display:flex;gap:24px;margin:20px 0 40px;">
+      <div style="flex:1;background:#f5f5f7;border-radius:26px;padding:44px 38px;"><div style="font-size:82px;font-weight:600;letter-spacing:-0.03em;line-height:1;">466</div><div style="font-size:26px;color:#6e6e73;margin:16px 0 0;">ForeclosureIndia</div></div>
+      <div style="flex:1;background:#f5f5f7;border-radius:26px;padding:44px 38px;"><div style="font-size:82px;font-weight:600;letter-spacing:-0.03em;line-height:1;">985</div><div style="font-size:26px;color:#6e6e73;margin:16px 0 0;">BankAuctionDeals</div></div>
+      <div style="flex:1;background:#f5f5f7;border-radius:26px;padding:44px 38px;"><div style="font-size:82px;font-weight:600;letter-spacing:-0.03em;line-height:1;">1,562</div><div style="font-size:26px;color:#6e6e73;margin:16px 0 0;">A third aggregator</div></div>
+      <div style="flex:1;background:#f5f5f7;border-radius:26px;padding:44px 38px;"><div style="font-size:82px;font-weight:600;letter-spacing:-0.03em;line-height:1;">3,476</div><div style="font-size:26px;color:#6e6e73;margin:16px 0 0;">FindAuction</div></div>
+    </div>
+    <p style="font-size:38px;line-height:1.42;color:#1d1d1f;margin:0;max-width:60ch;">Same city. Same day. And not one of them will tell you what a single property actually sold for, whether the keys exist, or whether a lender will finance it.</p>
+  </section>
+
+  <section data-label="Market" data-screen-label="03" data-speaker-notes="Public sector auction value tripled in one year on the new unified portal. But six in seven properties still fail to sell — the market's problem is unsold inventory, not scarce inventory. Both sides of the table pay for the same fix." style="background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:110px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 34px;">The market</div>
+    <h2 style="font-size:88px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 50px;max-width:26ch;">Supply is large, growing, and structurally broken.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+      <div style="background:#fff;border-radius:26px;padding:40px 34px;"><div style="font-size:66px;font-weight:600;letter-spacing:-0.03em;line-height:1;">₹15,731<span style="font-size:32px;color:#6e6e73;"> cr</span></div><p style="font-size:24px;line-height:1.42;color:#6e6e73;margin:18px 0 0;">public sector auction value, year to June 2025 — 3× the prior year</p></div>
+      <div style="background:#fff;border-radius:26px;padding:40px 34px;"><div style="font-size:66px;font-weight:600;letter-spacing:-0.03em;line-height:1;">2.16<span style="font-size:32px;color:#6e6e73;"> lakh</span></div><p style="font-size:24px;line-height:1.42;color:#6e6e73;margin:18px 0 0;">SARFAESI cases referred in FY25, flat for two years — a stable supply engine</p></div>
+      <div style="background:#000;color:#f5f5f7;border-radius:26px;padding:40px 34px;"><div style="font-size:66px;font-weight:600;letter-spacing:-0.03em;line-height:1;">14.7%</div><p style="font-size:24px;line-height:1.42;color:#a1a1a6;margin:18px 0 0;">of listed properties actually sell — six in seven fail</p></div>
+      <div style="background:#fff;border-radius:26px;padding:40px 34px;"><div style="font-size:66px;font-weight:600;letter-spacing:-0.03em;line-height:1;">₹55,000<span style="font-size:32px;color:#6e6e73;"> cr</span></div><p style="font-size:24px;line-height:1.42;color:#6e6e73;margin:18px 0 0;">our modelled all-India transacted value by FY31</p></div>
+    </div>
+    <p style="font-size:24px;color:#6e6e73;margin:40px 0 0;">Sources: Department of Financial Services via Business Standard, July 2025 · RBI Trend &amp; Progress of Banking 2024-25 · FY31 figure is our own model.</p>
+  </section>
+
+  <section data-label="Insight" data-screen-label="04" data-speaker-notes="This is the whole thesis on one slide. Every incumbent monetises the notice. Not one monetises the outcome. The UK proves outcome data is a durable subscription business." style="background:#000;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:130px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#5cd6a0;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 40px;">The insight</div>
+    <h2 style="font-size:104px;line-height:1.06;font-weight:600;letter-spacing:-0.035em;margin:0 0 56px;max-width:22ch;">Every portal in India monetises the notice. None monetises the outcome.</h2>
+    <div style="display:flex;gap:40px;">
+      <p style="flex:1;font-size:34px;line-height:1.45;color:#a1a1a6;margin:0;">In the UK, Essential Information Group has sold exactly this for decades: every property coming to auction and every one already sold — 850,000 properties, 600,000 with results — as a paid membership.</p>
+      <p style="flex:1;font-size:34px;line-height:1.45;color:#a1a1a6;margin:0;">India lists more than twice the UK's annual volume and has no equivalent. <span style="color:#f5f5f7;">That dataset does not exist here yet. Whoever builds it first owns the category.</span></p>
+    </div>
+  </section>
+
+  <section data-label="Product" data-screen-label="05" data-speaker-notes="Free gets you the whole market. Pro gets you the two numbers that decide a purchase, plus filters no other Indian portal has. Walk them through the masked-unlock model — free users see that the number exists." style="background:#fff;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:100px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 30px;">The product</div>
+    <h2 style="font-size:84px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 46px;max-width:26ch;">Five features that convert browsers into subscribers.</h2>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:20px;">
+      <div style="background:#f5f5f7;border-radius:24px;padding:36px 30px;">
+        <div style="font-size:24px;font-weight:600;color:#0071e3;margin:0 0 14px;">01</div>
+        <h3 style="font-size:32px;font-weight:600;margin:0 0 14px;line-height:1.2;">One verified feed</h3>
+        <p style="font-size:23px;line-height:1.45;color:#6e6e73;margin:0;">Every lender type, deduplicated and dated, with the source notice attached.</p>
+      </div>
+      <div style="background:#f5f5f7;border-radius:24px;padding:36px 30px;">
+        <div style="font-size:24px;font-weight:600;color:#0071e3;margin:0 0 14px;">02</div>
+        <h3 style="font-size:32px;font-weight:600;margin:0 0 14px;line-height:1.2;">Fair-value verdict</h3>
+        <p style="font-size:23px;line-height:1.45;color:#6e6e73;margin:0;">A suggested maximum bid on every property, drawn from confirmed outcomes nearby.</p>
+      </div>
+      <div style="background:#f5f5f7;border-radius:24px;padding:36px 30px;">
+        <div style="font-size:24px;font-weight:600;color:#0071e3;margin:0 0 14px;">03</div>
+        <h3 style="font-size:32px;font-weight:600;margin:0 0 14px;line-height:1.2;">Verified &amp; possession-clear</h3>
+        <p style="font-size:23px;line-height:1.45;color:#6e6e73;margin:0;">Every listing verified on the ground and stamped. Pro sees physical possession only.</p>
+      </div>
+      <div style="background:#f5f5f7;border-radius:24px;padding:36px 30px;">
+        <div style="font-size:24px;font-weight:600;color:#0071e3;margin:0 0 14px;">04</div>
+        <h3 style="font-size:32px;font-weight:600;margin:0 0 14px;line-height:1.2;">Pincode &amp; loan filters</h3>
+        <p style="font-size:23px;line-height:1.45;color:#6e6e73;margin:0;">Street-level radius search and loan-eligible-only results. Nobody else offers either.</p>
+      </div>
+      <div style="background:#000;color:#f5f5f7;border-radius:24px;padding:36px 30px;">
+        <div style="font-size:24px;font-weight:600;color:#5cd6a0;margin:0 0 14px;">05</div>
+        <h3 style="font-size:32px;font-weight:600;margin:0 0 14px;line-height:1.2;">Concierge</h3>
+        <p style="font-size:23px;line-height:1.45;color:#a1a1a6;margin:0;">Due Diligence at ₹9,999 and Hand-hold at ₹75,000 per property. Where the money is.</p>
+      </div>
+    </div>
+    <p style="font-size:26px;line-height:1.5;color:#6e6e73;margin:40px 0 0;max-width:88ch;">Pro features are masked, never hidden: a free user sees that a suggested maximum bid exists on this property, blurred, with one tap to unlock. Curiosity converts better than absence.</p>
+  </section>
+
+  <section data-label="Two-sided" data-screen-label="06" data-speaker-notes="This is why lenders will pay us too. Every failed auction is a re-notification, a fresh valuation, another quarter of NPA carrying cost. We bring qualified buyers." style="background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:110px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 34px;">Two-sided value</div>
+    <h2 style="font-size:88px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 50px;max-width:24ch;">One portal. Both sides of the table pay.</h2>
+    <div style="display:flex;gap:28px;">
+      <div style="flex:1;background:#fff;border-radius:28px;padding:52px 44px;">
+        <div style="font-size:24px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 20px;">For lenders</div>
+        <h3 style="font-size:46px;font-weight:600;margin:0 0 24px;line-height:1.16;">Fewer NPAs, faster, at better prices.</h3>
+        <p style="font-size:28px;line-height:1.45;color:#6e6e73;margin:0 0 26px;">Banks, NBFCs, housing finance companies, co-operative societies, small finance banks, ARCs and court sales all face the same problem: their notice reaches almost nobody who wants the asset.</p>
+        <div style="font-size:27px;line-height:1.7;color:#1d1d1f;">
+          <div>→ Qualified buyers matched to asset and micro-market</div>
+          <div>→ Fewer failed auctions and re-notifications</div>
+          <div>→ Recovery closer to realisable value, sooner</div>
+        </div>
+      </div>
+      <div style="flex:1;background:#000;color:#f5f5f7;border-radius:28px;padding:52px 44px;">
+        <div style="font-size:24px;font-weight:600;color:#5cd6a0;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 20px;">For buyers</div>
+        <h3 style="font-size:46px;font-weight:600;margin:0 0 24px;line-height:1.16;">Every option in one place, with the risk taken out.</h3>
+        <p style="font-size:28px;line-height:1.45;color:#a1a1a6;margin:0 0 26px;">Current and upcoming auctions across every lender type, in the buyer's own city, with the facts that separate a bargain from a trap.</p>
+        <div style="font-size:27px;line-height:1.7;color:#f5f5f7;">
+          <div>→ Current and upcoming, filtered by locality and pincode</div>
+          <div>→ Possession, title and loan eligibility verified up front</div>
+          <div>→ Concierge services for a genuinely personal purchase</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Moat" data-screen-label="07" data-speaker-notes="The key line: a competitor starting in 2029 cannot backfill this. Outcome data only accrues to whoever was watching every auction, every day, from the start." style="background:#000;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:110px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#5cd6a0;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 34px;">The moat</div>
+    <h2 style="font-size:88px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 48px;max-width:26ch;">A dataset that cannot be bought, only accumulated.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0 0 44px;">
+      <div style="background:#1d1d1f;border-radius:26px;padding:42px 36px;"><h3 style="font-size:38px;font-weight:600;margin:0 0 16px;">True clearing prices</h3><p style="font-size:25px;line-height:1.45;color:#a1a1a6;margin:0;">Hammer price against reserve for every completed auction, by micro-market, with provenance on every row.</p></div>
+      <div style="background:#1d1d1f;border-radius:26px;padding:42px 36px;"><h3 style="font-size:38px;font-weight:600;margin:0 0 16px;">Demand telemetry</h3><p style="font-size:25px;line-height:1.45;color:#a1a1a6;margin:0;">What buyers search, watch and view — the only demand-side signal in this market, and it exists only on our platform.</p></div>
+      <div style="background:#1d1d1f;border-radius:26px;padding:42px 36px;"><h3 style="font-size:38px;font-weight:600;margin:0 0 16px;">Verified ground truth</h3><p style="font-size:25px;line-height:1.45;color:#a1a1a6;margin:0;">Every concierge engagement produces a confirmed possession outcome and a hammer price. Services fund the dataset.</p></div>
+    </div>
+    <p style="font-size:38px;line-height:1.4;color:#f5f5f7;margin:0;max-width:64ch;">A competitor starting in 2029 cannot backfill five years of auction outcomes. They can copy the interface in a quarter; they cannot copy the history.</p>
+  </section>
+
+  <section data-label="Business model" data-screen-label="08" data-speaker-notes="Be honest here: subscription is a third of revenue. Two thirds is transaction-linked. One 45-lakh purchase is worth 150 subscription-months, which is exactly why concierge exists." style="background:#fff;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:100px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 30px;">Business model</div>
+    <h2 style="font-size:84px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 20px;max-width:26ch;">The subscription acquires. The transaction pays.</h2>
+    <p style="font-size:30px;line-height:1.45;color:#6e6e73;margin:0 0 44px;max-width:70ch;">Where Year-5 revenue comes from, on the five-city footprint.</p>
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div style="display:flex;align-items:center;gap:28px;"><span style="font-size:28px;width:420px;flex:none;">Pro subscriptions · ₹399/mo</span><div style="flex:1;background:#f5f5f7;height:46px;border-radius:23px;overflow:hidden;"><div style="width:34%;height:100%;background:#0071e3;"></div></div><span style="font-size:32px;font-weight:600;width:180px;text-align:right;">₹17.6 cr</span></div>
+      <div style="display:flex;align-items:center;gap:28px;"><span style="font-size:28px;width:420px;flex:none;">Concierge fees · research to sale deed</span><div style="flex:1;background:#f5f5f7;height:46px;border-radius:23px;overflow:hidden;"><div style="width:25%;height:100%;background:#1aa3c8;"></div></div><span style="font-size:32px;font-weight:600;width:180px;text-align:right;">₹13.1 cr</span></div>
+      <div style="display:flex;align-items:center;gap:28px;"><span style="font-size:28px;width:420px;flex:none;">Success fees · 1% on wins</span><div style="flex:1;background:#f5f5f7;height:46px;border-radius:23px;overflow:hidden;"><div style="width:16%;height:100%;background:#14b87a;"></div></div><span style="font-size:32px;font-weight:600;width:180px;text-align:right;">₹8.4 cr</span></div>
+      <div style="display:flex;align-items:center;gap:28px;"><span style="font-size:28px;width:420px;flex:none;">Loan arrangement commission</span><div style="flex:1;background:#f5f5f7;height:46px;border-radius:23px;overflow:hidden;"><div style="width:9%;height:100%;background:#5cd6a0;"></div></div><span style="font-size:32px;font-weight:600;width:180px;text-align:right;">₹4.9 cr</span></div>
+      <div style="display:flex;align-items:center;gap:28px;"><span style="font-size:28px;width:420px;flex:none;">Lender data &amp; NRI desk</span><div style="flex:1;background:#f5f5f7;height:46px;border-radius:23px;overflow:hidden;"><div style="width:14%;height:100%;background:#a5c8f5;"></div></div><span style="font-size:32px;font-weight:600;width:180px;text-align:right;">₹7.5 cr</span></div>
+    </div>
+    <p style="font-size:30px;line-height:1.45;color:#1d1d1f;margin:44px 0 0;max-width:80ch;">Two thirds of revenue is transaction-linked, because one ₹45 lakh purchase is worth roughly 150 subscription-months.</p>
+  </section>
+
+  <section data-label="Financials" data-screen-label="09" data-speaker-notes="₹1.4 crore in Year 1 to ₹51.5 crore in Year 5, EBITDA positive in Year 4. Say out loud that the honest interval on Year 5 is 35 to 70 crore and that concierge conversion is the single biggest swing factor." style="background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:100px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 30px;">Financials</div>
+    <h2 style="font-size:84px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 44px;max-width:24ch;">₹1.4 crore to ₹51.5 crore in five years.</h2>
+    <div style="display:flex;align-items:flex-end;gap:34px;height:330px;margin:0 0 34px;">
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:16px;height:100%;"><span style="font-size:34px;font-weight:600;">₹1.4 cr</span><div style="width:100%;height:3%;background:#c9dcf8;border-radius:14px 14px 0 0;"></div><span style="font-size:26px;color:#6e6e73;">Year 1</span></div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:16px;height:100%;"><span style="font-size:34px;font-weight:600;">₹4.7 cr</span><div style="width:100%;height:9%;background:#a5c8f5;border-radius:14px 14px 0 0;"></div><span style="font-size:26px;color:#6e6e73;">Year 2</span></div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:16px;height:100%;"><span style="font-size:34px;font-weight:600;">₹12.6 cr</span><div style="width:100%;height:24%;background:#5b9be0;border-radius:14px 14px 0 0;"></div><span style="font-size:26px;color:#6e6e73;">Year 3</span></div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:16px;height:100%;"><span style="font-size:34px;font-weight:600;">₹26.8 cr</span><div style="width:100%;height:52%;background:#2f6fbf;border-radius:14px 14px 0 0;"></div><span style="font-size:26px;color:#6e6e73;">Year 4</span></div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:16px;height:100%;"><span style="font-size:34px;font-weight:600;">₹51.5 cr</span><div style="width:100%;height:100%;background:#0071e3;border-radius:14px 14px 0 0;"></div><span style="font-size:26px;color:#6e6e73;">Year 5</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+      <div style="background:#fff;border-radius:22px;padding:30px;"><div style="font-size:44px;font-weight:600;letter-spacing:-0.02em;">55,000</div><div style="font-size:24px;color:#6e6e73;margin:10px 0 0;">Pro subscribers by Year 5</div></div>
+      <div style="background:#fff;border-radius:22px;padding:30px;"><div style="font-size:44px;font-weight:600;letter-spacing:-0.02em;">2,400</div><div style="font-size:24px;color:#6e6e73;margin:10px 0 0;">transactions influenced in Year 5</div></div>
+      <div style="background:#fff;border-radius:22px;padding:30px;"><div style="font-size:44px;font-weight:600;letter-spacing:-0.02em;">74%</div><div style="font-size:24px;color:#6e6e73;margin:10px 0 0;">gross margin at Year 5</div></div>
+      <div style="background:#000;color:#f5f5f7;border-radius:22px;padding:30px;"><div style="font-size:44px;font-weight:600;letter-spacing:-0.02em;">Year 4</div><div style="font-size:24px;color:#a1a1a6;margin:10px 0 0;">EBITDA positive, at ₹4.2 cr</div></div>
+    </div>
+    <p style="font-size:24px;color:#6e6e73;margin:34px 0 0;">Our own model on stated assumptions. Honest interval on Year 5 is ₹35–70 crore; concierge conversion is the single largest swing factor.</p>
+  </section>
+
+  <section data-label="Go to market" data-screen-label="10" data-speaker-notes="Chennai first, and deliberately narrow: prove we can actually observe hammer prices before spending money on four more cities. That is the whole first-90-days test." style="background:#fff;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:110px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 34px;">Go to market</div>
+    <h2 style="font-size:88px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 50px;max-width:24ch;">Prove Chennai. Then repeat it four times.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+      <div style="background:#f5f5f7;border-radius:26px;padding:42px 36px;">
+        <div style="font-size:24px;font-weight:600;color:#0071e3;margin:0 0 16px;">Months 1–6</div>
+        <h3 style="font-size:38px;font-weight:600;margin:0 0 16px;line-height:1.18;">Chennai only</h3>
+        <p style="font-size:25px;line-height:1.45;color:#6e6e73;margin:0;">1,528 properties, full outcome capture, first concierge closures. Prove we can observe hammer prices at all.</p>
+      </div>
+      <div style="background:#f5f5f7;border-radius:26px;padding:42px 36px;">
+        <div style="font-size:24px;font-weight:600;color:#0071e3;margin:0 0 16px;">Months 7–12</div>
+        <h3 style="font-size:38px;font-weight:600;margin:0 0 16px;line-height:1.18;">Bengaluru &amp; Kerala</h3>
+        <p style="font-size:25px;line-height:1.45;color:#6e6e73;margin:0;">The two largest volumes in the footprint. Kerala brings the NRI desk with it.</p>
+      </div>
+      <div style="background:#f5f5f7;border-radius:26px;padding:42px 36px;">
+        <div style="font-size:24px;font-weight:600;color:#0071e3;margin:0 0 16px;">Year 2</div>
+        <h3 style="font-size:38px;font-weight:600;margin:0 0 16px;line-height:1.18;">Hyderabad &amp; Coimbatore</h3>
+        <p style="font-size:25px;line-height:1.45;color:#6e6e73;margin:0;">Footprint complete. First direct lender agreements for data and buyer reach.</p>
+      </div>
+      <div style="background:#000;color:#f5f5f7;border-radius:26px;padding:42px 36px;">
+        <div style="font-size:24px;font-weight:600;color:#5cd6a0;margin:0 0 16px;">Channels</div>
+        <h3 style="font-size:38px;font-weight:600;margin:0 0 16px;line-height:1.18;">Cheap and compounding</h3>
+        <p style="font-size:25px;line-height:1.45;color:#a1a1a6;margin:0;">Locality SEO, WhatsApp city groups, the weekly brief, and monthly auction clinics.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Risks" data-screen-label="11" data-speaker-notes="Lead with these rather than being asked. The outcome-data risk is the real one and it is exactly what the pre-seed money tests." style="background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:110px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#0071e3;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 34px;">What could go wrong</div>
+    <h2 style="font-size:88px;line-height:1.08;font-weight:600;letter-spacing:-0.03em;margin:0 0 50px;max-width:22ch;">Four risks we would rather you heard from us.</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:26px;">
+      <div style="background:#fff;border-radius:26px;padding:42px 38px;"><h3 style="font-size:38px;font-weight:600;margin:0 0 14px;">Outcome data may be hard to get</h3><p style="font-size:26px;line-height:1.45;color:#6e6e73;margin:0;">The whole moat assumes we can observe hammer prices. If lenders do not disclose and registration lags, the flagship degrades to an estimate. This is precisely what the Chennai pilot tests, before we spend on four more cities.</p></div>
+      <div style="background:#fff;border-radius:26px;padding:42px 38px;"><h3 style="font-size:38px;font-weight:600;margin:0 0 14px;">A free state platform exists</h3><p style="font-size:26px;line-height:1.45;color:#6e6e73;margin:0;">BAANKNET has the public sector monopoly, official trust and no price. We must be complementary — non-PSB coverage, analytics and service — never a paid substitute for something free.</p></div>
+      <div style="background:#fff;border-radius:26px;padding:42px 38px;"><h3 style="font-size:38px;font-weight:600;margin:0 0 14px;">Willingness to pay is unproven</h3><p style="font-size:26px;line-height:1.45;color:#6e6e73;margin:0;">No Indian competitor charges retail buyers for auction data, so our 3% conversion assumption has no local benchmark. The UK proves it on professionals, not on retail.</p></div>
+      <div style="background:#fff;border-radius:26px;padding:42px 38px;"><h3 style="font-size:38px;font-weight:600;margin:0 0 14px;">Concierge dilutes the multiple</h3><p style="font-size:26px;line-height:1.45;color:#6e6e73;margin:0;">Half of modelled revenue is a services business inside a platform valuation. We automate the diligence steps aggressively and present concierge honestly as the channel that buys us proprietary data.</p></div>
+    </div>
+  </section>
+
+  <section data-label="The ask" data-screen-label="12" data-speaker-notes="The ask, and what it buys. Close on the one-line thesis: the dataset compounds and cannot be backfilled." style="background:#000;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;padding:110px 140px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:26px;font-weight:600;color:#5cd6a0;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 34px;">The ask</div>
+    <h2 style="font-size:96px;line-height:1.06;font-weight:600;letter-spacing:-0.035em;margin:0 0 48px;max-width:22ch;">Pre-seed to prove outcome capture in one city.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin:0 0 52px;">
+      <div style="background:#1d1d1f;border-radius:26px;padding:42px 36px;"><h3 style="font-size:36px;font-weight:600;margin:0 0 14px;">Data operations</h3><p style="font-size:25px;line-height:1.45;color:#a1a1a6;margin:0;">Ingestion pipeline, verification team and the outcome-capture desk that produces the dataset everything else rests on.</p></div>
+      <div style="background:#1d1d1f;border-radius:26px;padding:42px 36px;"><h3 style="font-size:36px;font-weight:600;margin:0 0 14px;">Chennai on the ground</h3><p style="font-size:25px;line-height:1.45;color:#a1a1a6;margin:0;">Site verifiers, concierge specialists and the first lender relationships, in one city done properly.</p></div>
+      <div style="background:#1d1d1f;border-radius:26px;padding:42px 36px;"><h3 style="font-size:36px;font-weight:600;margin:0 0 14px;">Product</h3><p style="font-size:25px;line-height:1.45;color:#a1a1a6;margin:0;">The consumer platform, the admin console, and the WhatsApp distribution layer that makes acquisition cheap.</p></div>
+    </div>
+    <div style="border-top:2px solid #48484a;padding:44px 0 0;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;">
+      <p style="font-size:42px;line-height:1.32;margin:0;max-width:30ch;">Whoever records the outcomes first owns the category. Nobody in India is recording them.</p>
+      <div style="text-align:right;">
+        <div style="display:flex;align-items:center;gap:16px;justify-content:flex-end;margin:0 0 14px;">
+          <span style="width:44px;height:44px;border-radius:13px;background:linear-gradient(140deg,#0071e3 0%,#1aa3c8 55%,#14b87a 100%);display:flex;align-items:center;justify-content:center;">
+            <span style="width:18px;height:18px;background:#fff;transform:rotate(45deg);border-radius:3px;display:block;"></span>
+          </span>
+          <span style="font-size:32px;font-weight:600;letter-spacing:-0.03em;"><span style="color:#4da3f0;">bankauction</span><span style="color:#5cd6a0;">iq</span></span>
+        </div>
+        <div style="font-size:27px;color:#a1a1a6;">investors@bankauctioniq.com</div>
+      </div>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

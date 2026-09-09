@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="./image-slot.js"></script>
+<style>
+  :root, [data-theme="dark"] {
+    --bg:#0d0f16; --ink:#e9ebf2; --ink3:#c8ccda; --muted:#8e95a9; --muted2:#99a1b4;
+    --surface:#151926; --line:#2c3244; --line2:#252b3b; --card:#141926; --panel:#05070d; --onPanel:#f2f4f9;
+    --headerbg:rgba(13,15,22,0.86);
+    --primary:#5f9dff; --primary-h:#8bb8ff; --primary-tint:#16223a;
+    --green:#2fd39a; --hot:#ff6f61; --soc-wa:#25d366;
+    --logo-hi:rgba(255,255,255,0.13); --logo-e1:rgba(0,0,0,0.58); --logo-cast:rgba(0,0,0,0.65);
+    --sh-hot:rgba(255,111,97,0.40);
+  }
+  [data-theme="light"] {
+    --bg:#ffffff; --ink:#1d1d1f; --ink3:#3a3a3c; --muted:#6e6e73; --muted2:#a1a1a6;
+    --surface:#f5f5f7; --line:#d2d2d7; --line2:#e8e8ed; --card:#ffffff; --panel:#000000; --onPanel:#f2f4f9;
+    --headerbg:rgba(255,255,255,0.82);
+    --primary:#0071e3; --primary-h:#0058b0; --primary-tint:#e2ecf7;
+    --green:#14b87a; --hot:#c81e14; --soc-wa:#25d366;
+    --logo-hi:rgba(255,255,255,0.95); --logo-e1:rgba(29,29,31,0.22); --logo-cast:rgba(26,52,140,0.34);
+    --sh-hot:rgba(200,30,20,0.4);
+  }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:var(--primary); text-decoration:none; }
+  a:hover { color:var(--primary-h); text-decoration:underline; }
+  button { font-family:inherit; cursor:pointer; color:var(--ink); }
+  input, select, textarea { font-family:inherit; color:var(--ink); background:var(--card); border:1px solid var(--line); border-radius:10px; accent-color:var(--primary); }
+  input::placeholder, textarea::placeholder { color:var(--muted2); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+  h1, h2, h3 { letter-spacing:-0.022em; }
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="background:var(--bg);color:var(--ink);min-height:100vh;">
+
+  <header style="position:sticky;top:0;z-index:30;background:var(--headerbg);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1320px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <a href="IndianBankAuctions v7.dc.html" style="text-decoration:none;display:flex;align-items:center;gap:9px;flex:none;">
+        <span style="width:34px;height:34px;flex:none;border-radius:10px;background:linear-gradient(158deg,#6d9aff 0%,#3a63e0 40%,#1b2c68 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.38),inset 0 -1px 0 rgba(0,0,0,0.38),inset 0 0 0 1px rgba(255,255,255,0.13),0 1px 2px rgba(9,17,44,0.45),0 10px 20px -9px var(--logo-cast);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" aria-hidden="true"><g transform="translate(0,0.8)" fill="rgba(6,14,40,0.38)"><path d="M16 4.6 28.6 12.9H3.4Z"></path><rect x="4.6" y="14.2" width="22.8" height="2.3" rx="0.7"></rect><rect x="7.6" y="21.0" width="3.4" height="4.4" rx="0.6"></rect><rect x="14.3" y="19.0" width="3.4" height="6.4" rx="0.6"></rect><rect x="21.0" y="17.2" width="3.4" height="8.2" rx="0.6"></rect><rect x="3.4" y="26.6" width="25.2" height="2.4" rx="0.8"></rect></g><g fill="#f2f6ff"><path d="M16 4.6 28.6 12.9H3.4Z"></path><rect x="4.6" y="14.2" width="22.8" height="2.3" rx="0.7"></rect><rect x="7.6" y="21.0" width="3.4" height="4.4" rx="0.6"></rect><rect x="14.3" y="19.0" width="3.4" height="6.4" rx="0.6"></rect><rect x="21.0" y="17.2" width="3.4" height="8.2" rx="0.6"></rect><rect x="3.4" y="26.6" width="25.2" height="2.4" rx="0.8"></rect></g></svg></span><span style="display:flex;align-items:baseline;font-size:19px;font-weight:600;letter-spacing:-0.024em;text-shadow:0 -1px 0 var(--logo-hi),0 1px 0 var(--logo-e1);"><span style="color:var(--ink);">Bank</span><span style="color:var(--primary);">Auctions.ai</span></span>
+        
+      </a>
+      <nav style="display:flex;gap:2px;flex-wrap:wrap;flex:1 1 320px;">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="10">
+          <button onClick="{{ t.select }}" style="border:none;background:{{ t.bg }};font-size:13px;font-weight:{{ t.weight }};color:var(--ink);padding:8px 12px;border-radius:8px;white-space:nowrap;" style-hover="background:var(--hot);color:#ffffff;transform:translateY(-1px);box-shadow:0 3px 8px var(--sh-hot)">{{ t.label }}</button>
+        </sc-for>
+      </nav>
+      <a href="IndianBankAuctions v7.dc.html" style="border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:500;padding:9px 18px;border-radius:980px;white-space:nowrap;color:var(--ink);">Back to the site</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ true }}">
+  <main id="about">
+    <section style="padding:74px 22px 46px;max-width:1000px;margin:0 auto;">
+      <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">About us</div>
+      <h1 style="font-size:54px;line-height:1.08;font-weight:600;margin:0 0 20px;max-width:18ch;">India auctions billions in seized property. Almost nobody can see it clearly.</h1>
+      <p style="font-size:21px;line-height:1.5;color:var(--muted);margin:0;max-width:62ch;">Every year, lenders across India put tens of thousands of crores of repossessed property up for auction. The notices are public. The information that would let an ordinary buyer act on them is not. <span style="color:var(--ink);">BankAuctions.ai</span> exists to close that gap.</p>
+    </section>
+
+    <section style="padding:0 22px 60px;max-width:1320px;margin:0 auto;">
+      <div style="border-radius:26px;overflow:hidden;height:380px;position:relative;">
+        <image-slot id="about-hero" shape="rect" placeholder="Photograph: wide view of a South Indian city skyline at dawn — Chennai or Kochi"></image-slot>
+      </div>
+    </section>
+
+    <section style="padding:0 22px 64px;max-width:1000px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;">
+        <div>
+          <h2 style="font-size:26px;font-weight:600;margin:0 0 12px;">What we believe</h2>
+          <p style="font-size:16.5px;line-height:1.6;color:var(--muted);margin:0;">A distressed asset sale should not be a game of who knows the branch manager. Every buyer deserves the same facts a professional investor would have: what comparable properties actually sold for, whether the keys exist, whether a lender will finance it, and what the street outside is really like.</p>
+        </div>
+        <div>
+          <h2 style="font-size:26px;font-weight:600;margin:0 0 12px;">What we do</h2>
+          <p style="font-size:16.5px;line-height:1.6;color:var(--muted);margin:0;">We track every auction notice from banks, NBFCs, housing finance companies, co-operative societies, small finance banks, asset reconstruction companies and court-ordered sales across five markets — then verify, deduplicate and enrich each one until it can be trusted.</p>
+        </div>
+        <div>
+          <h2 style="font-size:26px;font-weight:600;margin:0 0 12px;">Who we serve</h2>
+          <p style="font-size:16.5px;line-height:1.6;color:var(--muted);margin:0;">Buyers who want the whole market in one place with the risk taken out. And lenders who need those buyers to show up, because every failed auction is another quarter of a non-performing asset on the books.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:0 22px 76px;max-width:1320px;margin:0 auto;">
+      <div style="background:var(--surface);border-radius:26px;padding:40px 34px;">
+        <h2 style="font-size:32px;font-weight:600;margin:0 0 26px;">Where we operate</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;">
+          <div style="background:var(--card);border-radius:18px;padding:24px;"><div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;">Chennai</div><div style="font-size:13.5px;color:var(--muted);margin:6px 0 0;">1,528 live properties</div></div>
+          <div style="background:var(--card);border-radius:18px;padding:24px;"><div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;">Bengaluru</div><div style="font-size:13.5px;color:var(--muted);margin:6px 0 0;">2,004 live properties</div></div>
+          <div style="background:var(--card);border-radius:18px;padding:24px;"><div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;">Kerala</div><div style="font-size:13.5px;color:var(--muted);margin:6px 0 0;">4,860 live properties</div></div>
+          <div style="background:var(--card);border-radius:18px;padding:24px;"><div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;">Hyderabad</div><div style="font-size:13.5px;color:var(--muted);margin:6px 0 0;">833 live properties</div></div>
+          <div style="background:var(--card);border-radius:18px;padding:24px;"><div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;">Coimbatore</div><div style="font-size:13.5px;color:var(--muted);margin:6px 0 0;">511 live properties</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- EDUCATION -->
+  <sc-if value="{{ isEducation }}" hint-placeholder-val="{{ false }}">
+  <main id="education">
+    <section style="padding:70px 22px 40px;max-width:1000px;margin:0 auto;">
+      <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Learn</div>
+      <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;max-width:20ch;">How a bank auction actually works.</h1>
+      <p style="font-size:20px;line-height:1.5;color:var(--muted);margin:0;max-width:60ch;">Seven steps from a borrower's first missed payment to keys in your hand. Read it once and you will understand every notice you see on this site.</p>
+    </section>
+
+    <section style="padding:0 22px 70px;max-width:1000px;margin:0 auto;">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="7">
+        <div style="display:flex;gap:24px;flex-wrap:wrap;padding:26px 0;border-top:1px solid var(--line);">
+          <div style="flex:0 0 60px;font-size:38px;font-weight:600;color:var(--primary);letter-spacing:-0.03em;line-height:1;">{{ s.n }}</div>
+          <div style="flex:1 1 320px;min-width:0;">
+            <h2 style="font-size:24px;font-weight:600;margin:0 0 8px;">{{ s.title }}</h2>
+            <p style="font-size:16.5px;line-height:1.6;color:var(--muted);margin:0 0 10px;">{{ s.body }}</p>
+            <p style="font-size:14.5px;line-height:1.55;color:var(--ink);margin:0;background:var(--surface);border-radius:12px;padding:14px 16px;"><strong>What it means for you:</strong> {{ s.you }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="padding:0 22px 76px;max-width:1000px;margin:0 auto;">
+      <div style="background:var(--panel);color:var(--onPanel);border-radius:24px;padding:38px 34px;">
+        <h2 style="font-size:30px;font-weight:600;margin:0 0 14px;">The five mistakes first-time buyers make</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin:22px 0 0;">
+          <div><h3 style="font-size:17px;font-weight:600;margin:0 0 6px;">Bidding on symbolic possession</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted2);margin:0;">If the lender has not physically taken the property, getting the occupant out is your problem and it can take years.</p></div>
+          <div><h3 style="font-size:17px;font-weight:600;margin:0 0 6px;">Treating the reserve as the value</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted2);margin:0;">The reserve is what the lender needs to recover, not what the asset is worth. Sometimes it is far below market. Sometimes above.</p></div>
+          <div><h3 style="font-size:17px;font-weight:600;margin:0 0 6px;">Forgetting the all-in cost</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted2);margin:0;">Stamp duty, registration, arrears and refurbishment routinely add 15–20% to the hammer price.</p></div>
+          <div><h3 style="font-size:17px;font-weight:600;margin:0 0 6px;">Missing the EMD deadline</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted2);margin:0;">The earnest money deposit closes days before the auction. Miss it and you cannot bid, however ready you are.</p></div>
+          <div><h3 style="font-size:17px;font-weight:600;margin:0 0 6px;">Assuming finance is automatic</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted2);margin:0;">Not every lender funds auction purchases, and not every property qualifies. Check before you commit the EMD.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- SARFAESI -->
+  <sc-if value="{{ isSarfaesi }}" hint-placeholder-val="{{ false }}">
+  <main id="sarfaesi">
+    <section style="padding:70px 22px 40px;max-width:1000px;margin:0 auto;">
+      <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Legal primer</div>
+      <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;max-width:22ch;">The SARFAESI Act, in plain language.</h1>
+      <p style="font-size:20px;line-height:1.5;color:var(--muted);margin:0;max-width:64ch;">The Securitisation and Reconstruction of Financial Assets and Enforcement of Security Interest Act, 2002 is the law that makes almost every property on this site possible. Here is what it does and what it means for a buyer.</p>
+    </section>
+
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;">
+        <sc-for list="{{ sarfaesiCards }}" as="s" hint-placeholder-count="6">
+          <div style="background:var(--surface);border-radius:20px;padding:26px 24px;">
+            <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.04em;margin:0 0 10px;">{{ s.tag }}</div>
+            <h2 style="font-size:21px;font-weight:600;margin:0 0 10px;">{{ s.title }}</h2>
+            <p style="font-size:15px;line-height:1.6;color:var(--muted);margin:0;">{{ s.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding:0 22px 76px;max-width:1000px;margin:0 auto;">
+      <div style="border:1px solid var(--line2);border-radius:22px;padding:32px;">
+        <h2 style="font-size:26px;font-weight:600;margin:0 0 14px;">Who can enforce under SARFAESI</h2>
+        <p style="font-size:16px;line-height:1.6;color:var(--muted);margin:0 0 20px;">Not only the big banks. Any of these can take possession of secured property and bring it to auction, which is why our coverage extends well beyond the public sector.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:14px;background:var(--surface);padding:9px 16px;border-radius:980px;">Public sector banks</span>
+          <span style="font-size:14px;background:var(--surface);padding:9px 16px;border-radius:980px;">Private banks</span>
+          <span style="font-size:14px;background:var(--surface);padding:9px 16px;border-radius:980px;">Notified NBFCs</span>
+          <span style="font-size:14px;background:var(--surface);padding:9px 16px;border-radius:980px;">Housing finance companies</span>
+          <span style="font-size:14px;background:var(--surface);padding:9px 16px;border-radius:980px;">Co-operative banks and societies</span>
+          <span style="font-size:14px;background:var(--surface);padding:9px 16px;border-radius:980px;">Small finance banks</span>
+          <span style="font-size:14px;background:var(--surface);padding:9px 16px;border-radius:980px;">Asset reconstruction companies</span>
+          <span style="font-size:14px;background:var(--surface);padding:9px 16px;border-radius:980px;">Courts, DRTs and liquidators</span>
+        </div>
+        <p style="font-size:13.5px;line-height:1.6;color:var(--muted);margin:24px 0 0;">This page is general information about the law, not legal advice on your situation. For a specific property, consult an advocate — our expert desk can introduce you to one.</p>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- FAQS -->
+  <sc-if value="{{ isFaqs }}" hint-placeholder-val="{{ false }}">
+  <main id="faqs">
+    <section style="padding:70px 22px 40px;max-width:920px;margin:0 auto;">
+      <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">FAQs</div>
+      <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;">Questions people actually ask.</h1>
+    </section>
+    <section style="padding:0 22px 76px;max-width:920px;margin:0 auto;">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="10">
+        <div style="border-top:1px solid var(--line);padding:24px 0;">
+          <h2 style="font-size:21px;font-weight:600;margin:0 0 10px;">{{ f.q }}</h2>
+          <p style="font-size:16.5px;line-height:1.6;color:var(--muted);margin:0;">{{ f.a }}</p>
+        </div>
+      </sc-for>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- EXPERT -->
+  <sc-if value="{{ isExpert }}" hint-placeholder-val="{{ false }}">
+  <main id="expert">
+    <section style="padding:70px 22px 44px;max-width:1000px;margin:0 auto;">
+      <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Consult an expert</div>
+      <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;max-width:20ch;">Thirty minutes with someone who has done this before.</h1>
+      <p style="font-size:20px;line-height:1.5;color:var(--muted);margin:0;max-width:60ch;">Bring a property, a shortlist, or just a question. Free for Pro members; ₹1,500 otherwise, credited against any concierge engagement you go on to book.</p>
+    </section>
+
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;">
+        <div style="border-radius:22px;overflow:hidden;background:var(--surface);">
+          <div style="height:200px;position:relative;"><image-slot id="expert-1" shape="rect" placeholder="Portrait: property lawyer at a desk reviewing title documents"></image-slot></div>
+          <div style="padding:24px;"><h2 style="font-size:20px;font-weight:600;margin:0 0 6px;">Title &amp; legal</h2><p style="font-size:14.5px;line-height:1.55;color:var(--muted);margin:0;">Encumbrances, sale certificates, pending litigation, what a clean chain looks like.</p></div>
+        </div>
+        <div style="border-radius:22px;overflow:hidden;background:var(--surface);">
+          <div style="height:200px;position:relative;"><image-slot id="expert-2" shape="rect" placeholder="Portrait: valuation specialist inspecting a residential property"></image-slot></div>
+          <div style="padding:24px;"><h2 style="font-size:20px;font-weight:600;margin:0 0 6px;">Valuation &amp; bidding</h2><p style="font-size:14.5px;line-height:1.55;color:var(--muted);margin:0;">What comparable properties cleared at, and how to set a walk-away price you will actually hold to.</p></div>
+        </div>
+        <div style="border-radius:22px;overflow:hidden;background:var(--surface);">
+          <div style="height:200px;position:relative;"><image-slot id="expert-3" shape="rect" placeholder="Portrait: finance advisor discussing loan paperwork with a client"></image-slot></div>
+          <div style="padding:24px;"><h2 style="font-size:20px;font-weight:600;margin:0 0 6px;">Auction finance</h2><p style="font-size:14.5px;line-height:1.55;color:var(--muted);margin:0;">Which lenders fund auction purchases, what they need from you, and how fast it can move.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:0 22px 76px;max-width:1000px;margin:0 auto;">
+      <div style="background:var(--surface);border-radius:24px;padding:34px;">
+        <h2 style="font-size:26px;font-weight:600;margin:0 0 20px;">Book a consultation</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:0 0 18px;">
+          <div><label style="font-size:13px;font-weight:600;display:block;margin:0 0 7px;">Your name</label><input type="text" placeholder="Full name" style="width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:14.5px;background:var(--card);" /></div>
+          <div><label style="font-size:13px;font-weight:600;display:block;margin:0 0 7px;">Mobile or WhatsApp</label><input type="text" placeholder="+91" style="width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:14.5px;background:var(--card);" /></div>
+          <div><label style="font-size:13px;font-weight:600;display:block;margin:0 0 7px;">Expertise needed</label><select style="width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:14.5px;background:var(--card);"><option>Title &amp; legal</option><option>Valuation &amp; bidding</option><option>Auction finance</option><option>Not sure yet</option></select></div>
+          <div><label style="font-size:13px;font-weight:600;display:block;margin:0 0 7px;">Property ID, if you have one</label><input type="text" placeholder="e.g. CHN-24817" style="width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:14.5px;background:var(--card);" /></div>
+        </div>
+        <button style="border:none;background:var(--primary);color:#fff;font-size:15px;font-weight:500;padding:14px 30px;border-radius:980px;" style-hover="background:var(--primary-h)">Request a slot</button>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- INVESTORS -->
+  <sc-if value="{{ isInvestors }}" hint-placeholder-val="{{ false }}">
+  <main id="investors">
+    <section style="padding:70px 22px 44px;max-width:1000px;margin:0 auto;">
+      <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Investors</div>
+      <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;max-width:20ch;">A data business inside a ₹31,000 crore market.</h1>
+      <p style="font-size:20px;line-height:1.5;color:var(--muted);margin:0;max-width:64ch;">Indian bank auctions clear roughly ₹31,000 crore a year today and are growing. No portal in the country publishes what anything actually sold for. We are building that dataset, city by city, and monetising it three ways.</p>
+    </section>
+
+    <section style="padding:0 22px 54px;max-width:1320px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+        <div style="background:var(--surface);border-radius:20px;padding:26px;"><div style="font-size:38px;font-weight:600;letter-spacing:-0.03em;">₹15,731 cr</div><p style="font-size:14px;line-height:1.5;color:var(--muted);margin:9px 0 0;">public sector bank property e-auction value, twelve months to June 2025 — up 3× year on year</p></div>
+        <div style="background:var(--surface);border-radius:20px;padding:26px;"><div style="font-size:38px;font-weight:600;letter-spacing:-0.03em;">14.7%</div><p style="font-size:14px;line-height:1.5;color:var(--muted);margin:9px 0 0;">auction success rate — six in seven listed properties still fail to sell</p></div>
+        <div style="background:var(--surface);border-radius:20px;padding:26px;"><div style="font-size:38px;font-weight:600;letter-spacing:-0.03em;">2.16 lakh</div><p style="font-size:14px;line-height:1.5;color:var(--muted);margin:9px 0 0;">SARFAESI cases referred in FY25 — flat for two years, a stable supply engine</p></div>
+        <div style="background:var(--surface);border-radius:20px;padding:26px;"><div style="font-size:38px;font-weight:600;letter-spacing:-0.03em;">₹51.5 cr</div><p style="font-size:14px;line-height:1.5;color:var(--muted);margin:9px 0 0;">modelled Year-5 revenue from the five-city footprint</p></div>
+      </div>
+    </section>
+
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <h2 style="font-size:32px;font-weight:600;margin:0 0 22px;">Three revenue lines</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
+        <div style="border:1px solid var(--line2);border-radius:20px;padding:26px;"><h3 style="font-size:20px;font-weight:600;margin:0 0 8px;">Subscription</h3><p style="font-size:15px;line-height:1.55;color:var(--muted);margin:0;">₹399 a month for clearing prices, Pro filters and alerts. The acquisition and retention product.</p></div>
+        <div style="border:1px solid var(--line2);border-radius:20px;padding:26px;"><h3 style="font-size:20px;font-weight:600;margin:0 0 8px;">Transaction</h3><p style="font-size:15px;line-height:1.55;color:var(--muted);margin:0;">Concierge fees, a 1% success fee on wins, and loan-arrangement commission. Two thirds of Year-5 revenue.</p></div>
+        <div style="border:1px solid var(--line2);border-radius:20px;padding:26px;"><h3 style="font-size:20px;font-weight:600;margin:0 0 8px;">Institutional</h3><p style="font-size:15px;line-height:1.55;color:var(--muted);margin:0;">Lenders paying for the outcome dataset and for buyer reach that reduces failed auctions.</p></div>
+      </div>
+    </section>
+
+    <!-- TRACTION -->
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 8px;">
+        <h2 style="font-size:32px;font-weight:600;margin:0;">Traction, audited to date</h2>
+        <span style="font-size:12px;font-weight:600;color:var(--green);border:1px solid var(--line);border-radius:980px;padding:6px 13px;white-space:nowrap;">Actuals · Chennai pilot · 11 months</span>
+      </div>
+      <p style="font-size:15.5px;line-height:1.6;color:var(--muted);margin:0 0 22px;max-width:70ch;">One city, one team, no paid distribution beyond ₹2.9 lakh of experiments. Everything below is booked revenue, not pipeline.</p>
+      <div style="overflow-x:auto;border:1px solid var(--line2);border-radius:20px;">
+        <table style="width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px;">
+          <tbody>
+            <tr style="border-bottom:1px solid var(--line2);"><td style="padding:15px 22px;color:var(--muted);">Auction notices ingested and verified</td><td style="padding:15px 22px;font-weight:600;text-align:right;">41,200</td></tr>
+            <tr style="border-bottom:1px solid var(--line2);"><td style="padding:15px 22px;color:var(--muted);">Registered free accounts</td><td style="padding:15px 22px;font-weight:600;text-align:right;">18,900</td></tr>
+            <tr style="border-bottom:1px solid var(--line2);"><td style="padding:15px 22px;color:var(--muted);">Paying accounts · free-to-paid conversion</td><td style="padding:15px 22px;font-weight:600;text-align:right;">1,340 · 7.1%</td></tr>
+            <tr style="border-bottom:1px solid var(--line2);"><td style="padding:15px 22px;color:var(--muted);">Field reports delivered at ₹4,999</td><td style="padding:15px 22px;font-weight:600;text-align:right;">96</td></tr>
+            <tr style="border-bottom:1px solid var(--line2);"><td style="padding:15px 22px;color:var(--muted);">Concierge files · winning bid value handled</td><td style="padding:15px 22px;font-weight:600;text-align:right;">14 · ₹2.31 cr</td></tr>
+            <tr style="border-bottom:1px solid var(--line2);"><td style="padding:15px 22px;color:var(--muted);">Cumulative revenue · current run-rate</td><td style="padding:15px 22px;font-weight:600;text-align:right;">₹15.9 L · ₹2.4 L/mo</td></tr>
+            <tr style="border-bottom:1px solid var(--line2);"><td style="padding:15px 22px;color:var(--muted);">Revenue growth, trailing six months</td><td style="padding:15px 22px;font-weight:600;text-align:right;">19% month on month</td></tr>
+            <tr><td style="padding:15px 22px;color:var(--muted);">Blended CAC · revenue per paying account · payback</td><td style="padding:15px 22px;font-weight:600;text-align:right;">₹210 · ₹1,190 · under 1 month</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- UNIT ECONOMICS -->
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <h2 style="font-size:32px;font-weight:600;margin:0 0 8px;">Unit economics, line by line</h2>
+      <p style="font-size:15.5px;line-height:1.6;color:var(--muted);margin:0 0 22px;max-width:70ch;">Direct cost is what leaves the business to deliver one unit — payment charges, the field engineer's visit, statutory fees, the advocate's share, the documentation agent. Salaries and technology sit above this line.</p>
+      <div style="overflow-x:auto;border:1px solid var(--line2);border-radius:20px;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:640px;">
+          <thead>
+            <tr style="background:var(--surface);">
+              <th style="padding:14px 20px;text-align:left;font-weight:600;">Revenue line</th>
+              <th style="padding:14px 20px;text-align:right;font-weight:600;">Price</th>
+              <th style="padding:14px 20px;text-align:right;font-weight:600;">Direct cost</th>
+              <th style="padding:14px 20px;text-align:right;font-weight:600;">Contribution</th>
+              <th style="padding:14px 20px;text-align:right;font-weight:600;">Margin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;">Pro pack · 5 properties, one city</td><td style="padding:14px 20px;text-align:right;">₹499</td><td style="padding:14px 20px;text-align:right;color:var(--muted);">₹38</td><td style="padding:14px 20px;text-align:right;font-weight:600;">₹461</td><td style="padding:14px 20px;text-align:right;font-weight:600;">92%</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;">Gold / Diamond packs · 15–25 properties</td><td style="padding:14px 20px;text-align:right;">₹1,399–₹2,099</td><td style="padding:14px 20px;text-align:right;color:var(--muted);">₹95–₹140</td><td style="padding:14px 20px;text-align:right;font-weight:600;">₹1,304–₹1,959</td><td style="padding:14px 20px;text-align:right;font-weight:600;">93–94%</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;">Research and field report</td><td style="padding:14px 20px;text-align:right;">₹4,999</td><td style="padding:14px 20px;text-align:right;color:var(--muted);">₹2,150</td><td style="padding:14px 20px;text-align:right;font-weight:600;">₹2,849</td><td style="padding:14px 20px;text-align:right;font-weight:600;">57%</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;">Lawyer consultation · 30 min</td><td style="padding:14px 20px;text-align:right;">₹999</td><td style="padding:14px 20px;text-align:right;color:var(--muted);">₹600</td><td style="padding:14px 20px;text-align:right;font-weight:600;">₹399</td><td style="padding:14px 20px;text-align:right;font-weight:600;">40%</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;">Concierge · 1% of winning bid, ₹1.85 cr average</td><td style="padding:14px 20px;text-align:right;">₹1.85 L</td><td style="padding:14px 20px;text-align:right;color:var(--muted);">₹64,000</td><td style="padding:14px 20px;text-align:right;font-weight:600;">₹1.21 L</td><td style="padding:14px 20px;text-align:right;font-weight:600;">65%</td></tr>
+            <tr style="border-top:1px solid var(--line);background:var(--surface);"><td style="padding:14px 20px;font-weight:600;">Blended, at today's mix</td><td style="padding:14px 20px;"></td><td style="padding:14px 20px;"></td><td style="padding:14px 20px;"></td><td style="padding:14px 20px;text-align:right;font-weight:700;">61%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- THE MODEL -->
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 8px;">
+        <h2 style="font-size:32px;font-weight:600;margin:0;">The path to ₹51.5 crore</h2>
+        <span style="font-size:12px;font-weight:600;color:var(--brand);border:1px solid var(--line);border-radius:980px;padding:6px 13px;white-space:nowrap;">Modelled, not actual</span>
+      </div>
+      <p style="font-size:15.5px;line-height:1.6;color:var(--muted);margin:0 0 22px;max-width:70ch;">Chennai first, then Bengaluru and Hyderabad, then Kochi and Coimbatore. Growth is driven by cities live and by transaction attach rate, not by price rises.</p>
+      <div style="overflow-x:auto;border:1px solid var(--line2);border-radius:20px;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:600px;">
+          <thead>
+            <tr style="background:var(--surface);">
+              <th style="padding:14px 20px;text-align:left;font-weight:600;">Year</th>
+              <th style="padding:14px 20px;text-align:right;font-weight:600;">Cities</th>
+              <th style="padding:14px 20px;text-align:right;font-weight:600;">Paying accounts</th>
+              <th style="padding:14px 20px;text-align:right;font-weight:600;">Revenue</th>
+              <th style="padding:14px 20px;text-align:right;font-weight:600;">EBITDA margin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;font-weight:600;">Year 1</td><td style="padding:14px 20px;text-align:right;">1</td><td style="padding:14px 20px;text-align:right;">3,200</td><td style="padding:14px 20px;text-align:right;">₹0.9 cr</td><td style="padding:14px 20px;text-align:right;color:var(--hot);">−180%</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;font-weight:600;">Year 2</td><td style="padding:14px 20px;text-align:right;">2</td><td style="padding:14px 20px;text-align:right;">14,000</td><td style="padding:14px 20px;text-align:right;">₹4.2 cr</td><td style="padding:14px 20px;text-align:right;color:var(--hot);">−42%</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;font-weight:600;">Year 3</td><td style="padding:14px 20px;text-align:right;">3</td><td style="padding:14px 20px;text-align:right;">41,000</td><td style="padding:14px 20px;text-align:right;">₹13.6 cr</td><td style="padding:14px 20px;text-align:right;">4%</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;font-weight:600;">Year 4</td><td style="padding:14px 20px;text-align:right;">5</td><td style="padding:14px 20px;text-align:right;">88,000</td><td style="padding:14px 20px;text-align:right;">₹29.8 cr</td><td style="padding:14px 20px;text-align:right;">18%</td></tr>
+            <tr style="border-top:1px solid var(--line);background:var(--surface);"><td style="padding:14px 20px;font-weight:700;">Year 5</td><td style="padding:14px 20px;text-align:right;font-weight:600;">5</td><td style="padding:14px 20px;text-align:right;font-weight:600;">1.40 lakh</td><td style="padding:14px 20px;text-align:right;font-weight:700;">₹51.5 cr</td><td style="padding:14px 20px;text-align:right;font-weight:700;">27%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MOAT -->
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <h2 style="font-size:32px;font-weight:600;margin:0 0 22px;">What is hard to copy</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;">
+        <div style="background:var(--surface);border-radius:20px;padding:26px;"><h3 style="font-size:19px;font-weight:600;margin:0 0 8px;">The outcome dataset</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted);margin:0;">Reserve prices are public; clearing prices are not. Every closed lot we capture makes the next valuation better, and the set cannot be bought.</p></div>
+        <div style="background:var(--surface);border-radius:20px;padding:26px;"><h3 style="font-size:19px;font-weight:600;margin:0 0 8px;">1,100 notice sources</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted);margin:0;">Bank portals, auctioneer platforms, DRT boards and regional newspapers, ingested daily. The pipeline took two years to stabilise.</p></div>
+        <div style="background:var(--surface);border-radius:20px;padding:26px;"><h3 style="font-size:19px;font-weight:600;margin:0 0 8px;">Two-person verification</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted);margin:0;">No figure publishes until a second person independently confirms it against the source document. It is a cost, and it is the reason buyers pay.</p></div>
+        <div style="background:var(--surface);border-radius:20px;padding:26px;"><h3 style="font-size:19px;font-weight:600;margin:0 0 8px;">People on the ground</h3><p style="font-size:14.5px;line-height:1.55;color:var(--muted);margin:0;">Field engineers and empanelled advocates in each city. Software alone cannot tell you a family still lives in the flat.</p></div>
+      </div>
+    </section>
+
+    <!-- COMPETITION -->
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <h2 style="font-size:32px;font-weight:600;margin:0 0 22px;">Where we sit</h2>
+      <div style="overflow-x:auto;border:1px solid var(--line2);border-radius:20px;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:660px;">
+          <thead>
+            <tr style="background:var(--surface);">
+              <th style="padding:14px 20px;text-align:left;font-weight:600;">Who</th>
+              <th style="padding:14px 20px;text-align:left;font-weight:600;">What they do</th>
+              <th style="padding:14px 20px;text-align:left;font-weight:600;">What they don't</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;font-weight:600;">Government aggregators</td><td style="padding:14px 20px;color:var(--muted);">Publish notices from participating public sector banks</td><td style="padding:14px 20px;color:var(--muted);">No verification, no private lenders, no outcomes, no service</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;font-weight:600;">Bank and auctioneer portals</td><td style="padding:14px 20px;color:var(--muted);">Run the transaction and hold the EMD</td><td style="padding:14px 20px;color:var(--muted);">One lender at a time; no discovery, comparison or diligence</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;font-weight:600;">Classified property portals</td><td style="padding:14px 20px;color:var(--muted);">Republish auction notices as lead bait</td><td style="padding:14px 20px;color:var(--muted);">Stale and duplicated data, no possession or encumbrance truth</td></tr>
+            <tr style="border-top:1px solid var(--line2);"><td style="padding:14px 20px;font-weight:600;">Local brokers and agents</td><td style="padding:14px 20px;color:var(--muted);">Know one micro-market deeply and take a cut</td><td style="padding:14px 20px;color:var(--muted);">Not scalable, not comparable, incentives sit with the seller</td></tr>
+            <tr style="border-top:1px solid var(--line);background:var(--surface);"><td style="padding:14px 20px;font-weight:700;">Us</td><td style="padding:14px 20px;">Verified discovery, ground diligence, clearing prices, post-win service</td><td style="padding:14px 20px;color:var(--muted);">We never auction, never hold bid money, never bid</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- THE ROUND -->
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <h2 style="font-size:32px;font-weight:600;margin:0 0 8px;">The round and what it buys</h2>
+      <p style="font-size:15.5px;line-height:1.6;color:var(--muted);margin:0 0 22px;max-width:70ch;">Raising <strong style="color:var(--ink);font-weight:600;">₹6.5 crore pre-seed</strong> for a 24-month runway. Priced round, single close, standard preference terms, one board observer seat.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;">
+        <div style="border:1px solid var(--line2);border-radius:20px;padding:26px;">
+          <h3 style="font-size:19px;font-weight:600;margin:0 0 14px;">Use of funds</h3>
+          <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px;">
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="color:var(--muted);">City expansion — desks, field engineers</span><span style="font-weight:600;">38%</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="color:var(--muted);">Engineering and the ingest pipeline</span><span style="font-weight:600;">27%</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="color:var(--muted);">Demand generation</span><span style="font-weight:600;">18%</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="color:var(--muted);">Legal, compliance and audit</span><span style="font-weight:600;">12%</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;"><span style="color:var(--muted);">Working capital</span><span style="font-weight:600;">5%</span></div>
+          </div>
+        </div>
+        <div style="border:1px solid var(--line2);border-radius:20px;padding:26px;">
+          <h3 style="font-size:19px;font-weight:600;margin:0 0 14px;">Milestones we are underwriting</h3>
+          <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px;line-height:1.5;color:var(--muted);">
+            <div>Chennai contribution-positive within 9 months</div>
+            <div>Clearing price captured on 60% of closed lots in Chennai</div>
+            <div>Bengaluru and Hyderabad live by month 14</div>
+            <div>₹1 crore annual recurring revenue by month 18</div>
+            <div>Two lender data agreements signed by month 20</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RISKS -->
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <h2 style="font-size:32px;font-weight:600;margin:0 0 8px;">What could go wrong</h2>
+      <p style="font-size:15.5px;line-height:1.6;color:var(--muted);margin:0 0 22px;max-width:70ch;">We would rather you read this from us than find it in diligence.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+        <div style="background:var(--surface);border-radius:18px;padding:22px 24px;"><div style="font-size:16px;font-weight:600;margin:0 0 6px;">Supply is tied to the credit cycle</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">Auction volume follows bad loans. A benign cycle shrinks the market. SARFAESI referrals have held near 2.16 lakh for two years, and our services revenue scales per transaction rather than per notice.</p></div>
+        <div style="background:var(--surface);border-radius:18px;padding:22px 24px;"><div style="font-size:16px;font-weight:600;margin:0 0 6px;">Notice access could be restricted</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">Publication is a statutory requirement under SARFAESI, so notices stay public, but a portal could throttle machine access. We ingest from 1,100 sources including print, and no single one exceeds 9% of volume.</p></div>
+        <div style="background:var(--surface);border-radius:18px;padding:22px 24px;"><div style="font-size:16px;font-weight:600;margin:0 0 6px;">A wrong report damages trust</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">We refund in full on any material error a buyer can demonstrate, carry professional indemnity cover, and hold every published figure to a second independent check. Four refunds issued to date.</p></div>
+        <div style="background:var(--surface);border-radius:18px;padding:22px 24px;"><div style="font-size:16px;font-weight:600;margin:0 0 6px;">Field quality is hard to scale</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">Report quality lives with the engineer who visits. Each new city opens with a trained lead before it takes paid work, and reports are sampled weekly.</p></div>
+        <div style="background:var(--surface);border-radius:18px;padding:22px 24px;"><div style="font-size:16px;font-weight:600;margin:0 0 6px;">Transaction revenue is lumpy</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">Two thirds of the Year-5 model is transaction-linked and a single concierge file can move a month. Subscription revenue is what we manage against.</p></div>
+        <div style="background:var(--surface);border-radius:18px;padding:22px 24px;"><div style="font-size:16px;font-weight:600;margin:0 0 6px;">A portal could build this</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">The data is copyable in a quarter; the outcome history, field network and advocate panel are not. Our answer is to keep compounding the part that has to be earned.</p></div>
+      </div>
+    </section>
+
+    <!-- GOVERNANCE -->
+    <section style="padding:0 22px 60px;max-width:1000px;margin:0 auto;">
+      <h2 style="font-size:32px;font-weight:600;margin:0 0 22px;">Governance and compliance</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
+        <div style="border:1px solid var(--line2);border-radius:18px;padding:22px 24px;"><div style="font-size:15.5px;font-weight:600;margin:0 0 6px;">Structure</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">Private limited company registered in Chennai, GST registered, statutory audit from year one.</p></div>
+        <div style="border:1px solid var(--line2);border-radius:18px;padding:22px 24px;"><div style="font-size:15.5px;font-weight:600;margin:0 0 6px;">We hold no client money</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">EMD and bid amounts move only between the buyer and the lender's portal, which keeps us outside payment intermediary regulation.</p></div>
+        <div style="border:1px solid var(--line2);border-radius:18px;padding:22px 24px;"><div style="font-size:15.5px;font-weight:600;margin:0 0 6px;">Data protection</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">Consent-based collection under the DPDP Act, data resident in India, borrower identities never republished beyond the notice.</p></div>
+        <div style="border:1px solid var(--line2);border-radius:18px;padding:22px 24px;"><div style="font-size:15.5px;font-weight:600;margin:0 0 6px;">Independent legal opinions</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">Written by empanelled advocates in their own name. We take no referral fee that depends on the opinion's conclusion.</p></div>
+        <div style="border:1px solid var(--line2);border-radius:18px;padding:22px 24px;"><div style="font-size:15.5px;font-weight:600;margin:0 0 6px;">Investor reporting</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">Monthly metrics pack, quarterly management accounts, annual audited statements. One board observer seat in this round.</p></div>
+        <div style="border:1px solid var(--line2);border-radius:18px;padding:22px 24px;"><div style="font-size:15.5px;font-weight:600;margin:0 0 6px;">Loans through partners</div><p style="font-size:14px;line-height:1.55;color:var(--muted);margin:0;">We do not lend. Auction finance is arranged through partner lenders on disclosed commission.</p></div>
+      </div>
+    </section>
+
+    <section style="padding:0 22px 76px;max-width:1000px;margin:0 auto;">
+      <div style="background:var(--panel);color:var(--onPanel);border-radius:24px;padding:38px 34px;">
+        <h2 style="font-size:28px;font-weight:600;margin:0 0 12px;">Talk to us</h2>
+        <p style="font-size:16.5px;line-height:1.6;color:var(--muted2);margin:0 0 22px;max-width:60ch;">We are raising a pre-seed round to prove outcome capture in Chennai before expanding to the remaining four markets. The full research paper and financial model are available under NDA.</p>
+        <div style="font-size:17px;font-weight:600;margin:0 0 24px;">investors@bankauctions.ai</div>
+        <div style="border-top:1px solid rgba(255,255,255,0.12);padding:22px 0 0;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted2);margin:0 0 12px;">In the data room</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 22px;font-size:14.5px;line-height:1.5;">
+            <div>Five-year financial model, editable</div>
+            <div>Chennai cohort and retention data</div>
+            <div>Market research paper with sources</div>
+            <div>Incorporation, cap table and ESOP pool</div>
+            <div>Sample field report and legal opinion</div>
+            <div>Lender pipeline and letters of intent</div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;line-height:1.6;color:var(--muted);margin:20px 0 0;text-align:justify;text-wrap:pretty;">Figures marked as actuals are unaudited management numbers for the Chennai pilot as at 31 August 2026. Everything marked modelled is a forward-looking projection based on assumptions we will share in full; it is not a forecast, a guarantee or a promise of return. This page is information about our business, not an offer or invitation to subscribe to securities, and nothing on it is investment advice. Market sizing draws on published IBA, RBI and public sector bank e-auction disclosures, cited in the research paper.</p>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- COMMUNITY -->
+  <sc-if value="{{ isCommunity }}" hint-placeholder-val="{{ false }}">
+  <main id="community">
+    <section style="padding:70px 22px 44px;max-width:1000px;margin:0 auto;">
+      <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Community</div>
+      <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;max-width:20ch;">Buyers who have done it, helping the ones who haven't.</h1>
+      <p style="font-size:20px;line-height:1.5;color:var(--muted);margin:0;max-width:60ch;">Auction buying is a small world in every city. We run the places where it talks to itself.</p>
+    </section>
+
+    <section style="padding:0 22px 60px;max-width:1320px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;">
+        <div style="background:var(--surface);border-radius:22px;padding:30px 26px;">
+          <h2 style="font-size:22px;font-weight:600;margin:0 0 10px;">City WhatsApp groups</h2>
+          <p style="font-size:15px;line-height:1.6;color:var(--muted);margin:0 0 18px;">One group per city, moderated by our local team. New notices, deadline reminders, and honest answers from people who have bid before.</p>
+          <button style="border:none;background:var(--soc-wa);color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:980px;">Join your city group</button>
+        </div>
+        <div style="background:var(--surface);border-radius:22px;padding:30px 26px;">
+          <h2 style="font-size:22px;font-weight:600;margin:0 0 10px;">Monthly auction clinic</h2>
+          <p style="font-size:15px;line-height:1.6;color:var(--muted);margin:0 0 18px;">A free online session on the last Saturday of every month. We walk through three live properties end to end and answer whatever comes up.</p>
+          <button style="border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:600;padding:12px 20px;border-radius:980px;">Reserve a seat</button>
+        </div>
+        <div style="background:var(--surface);border-radius:22px;padding:30px 26px;">
+          <h2 style="font-size:22px;font-weight:600;margin:0 0 10px;">The weekly brief</h2>
+          <p style="font-size:15px;line-height:1.6;color:var(--muted);margin:0 0 18px;">One email every Thursday: what closed, at what price, and what is worth watching next week in your city.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <input type="text" placeholder="you@example.com" style="flex:1 1 160px;border:1px solid var(--line);border-radius:980px;padding:12px 18px;font-size:14px;background:var(--card);" />
+            <button style="border:none;background:var(--primary);color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:980px;">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:0 22px 76px;max-width:1000px;margin:0 auto;">
+      <h2 style="font-size:30px;font-weight:600;margin:0 0 20px;">From the community</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
+        <div style="border:1px solid var(--line2);border-radius:20px;padding:26px;">
+          <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">“I had been watching Velachery for eight months on three different portals and none of them agreed with each other. Seeing one verified count, with the notice attached, was the first time I trusted what I was looking at.”</p>
+          <div style="font-size:13.5px;color:var(--muted);">First-time buyer · Chennai</div>
+        </div>
+        <div style="border:1px solid var(--line2);border-radius:20px;padding:26px;">
+          <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">“The possession flag saved me. The property looked like a bargain until the site visit showed the family still living there and no physical possession taken.”</p>
+          <div style="font-size:13.5px;color:var(--muted);">Investor · Bengaluru</div>
+        </div>
+        <div style="border:1px solid var(--line2);border-radius:20px;padding:26px;">
+          <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">“Being nine hours away, the video walkthrough and having one person owning the file made the whole thing possible at all.”</p>
+          <div style="font-size:13.5px;color:var(--muted);">NRI buyer · Kochi</div>
+        </div>
+      </div>
+      
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- SUPPORT -->
+  <sc-if value="{{ isSupport }}" hint-placeholder-val="{{ false }}">
+  <main id="support" style="max-width:1000px;margin:0 auto;padding:70px 22px 80px;">
+    <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Support</div>
+    <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;">We answer, same working day.</h1>
+    <p style="font-size:20px;line-height:1.5;color:var(--muted);margin:0 0 36px;max-width:56ch;">Real people in each city, not a ticket queue.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:0 0 30px;">
+      <div style="background:var(--surface);border-radius:20px;padding:26px;"><h2 style="font-size:19px;font-weight:600;margin:0 0 8px;">WhatsApp</h2><p style="font-size:14.5px;line-height:1.5;color:var(--muted);margin:0 0 16px;">Send a property link and ask anything.</p><button style="border:none;background:var(--soc-wa);color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:980px;">Message us</button></div>
+      <div style="background:var(--surface);border-radius:20px;padding:26px;"><h2 style="font-size:19px;font-weight:600;margin:0 0 8px;">Phone</h2><p style="font-size:14.5px;line-height:1.5;color:var(--muted);margin:0 0 16px;">Monday to Saturday, 9am–7pm IST.</p><div style="font-size:19px;font-weight:600;">+91 44 4000 0000</div></div>
+      <div style="background:var(--surface);border-radius:20px;padding:26px;"><h2 style="font-size:19px;font-weight:600;margin:0 0 8px;">Email</h2><p style="font-size:14.5px;line-height:1.5;color:var(--muted);margin:0 0 16px;">Documents, invoices, concierge files.</p><div style="font-size:15.5px;font-weight:600;">support@BankAuctions.ai</div></div>
+    </div>
+    <div style="background:var(--surface);border-radius:22px;padding:30px;">
+      <h2 style="font-size:23px;font-weight:600;margin:0 0 8px;">Are you a lender?</h2>
+      <p style="font-size:15.5px;line-height:1.55;color:var(--muted);margin:0 0 18px;max-width:70ch;">Banks, NBFCs, housing finance companies, co-operative societies, small finance banks, ARCs and court-appointed officers can list properties with us and reach buyers matched to the asset and micro-market.</p>
+      <button style="border:none;background:var(--primary);color:#fff;font-size:14.5px;font-weight:500;padding:12px 24px;border-radius:980px;">Talk to our lender team</button>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- PRIVACY -->
+  <sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
+  <main id="privacy" style="max-width:860px;margin:0 auto;padding:70px 22px 80px;">
+    <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Privacy</div>
+    <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;">Privacy policy</h1>
+    <p style="font-size:19px;line-height:1.55;color:var(--muted);margin:0 0 12px;">We publish facts about assets, never profiles of the people who lost them.</p>
+    <p style="font-size:13.5px;color:var(--muted);margin:0 0 40px;">Last updated 16 August 2026 · Governed by the Digital Personal Data Protection Act, 2023</p>
+    <sc-for list="{{ privacy }}" as="p" hint-placeholder-count="8">
+      <div style="border-top:1px solid var(--line);padding:26px 0;">
+        <h2 style="font-size:23px;font-weight:600;margin:0 0 10px;">{{ p.h }}</h2>
+        <p style="font-size:16.5px;line-height:1.65;color:var(--muted);margin:0;">{{ p.b }}</p>
+      </div>
+    </sc-for>
+    <div style="background:var(--surface);border-radius:20px;padding:26px;margin:30px 0 0;">
+      <h2 style="font-size:19px;font-weight:600;margin:0 0 8px;">Grievance officer</h2>
+      <p style="font-size:15.5px;line-height:1.6;color:var(--muted);margin:0;">Write to privacy@bankauctions.ai. We respond within seven working days, as required under the DPDP Act.</p>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- TERMS -->
+  <sc-if value="{{ isTerms }}" hint-placeholder-val="{{ false }}">
+  <main id="terms" style="max-width:860px;margin:0 auto;padding:70px 22px 80px;">
+    <div style="font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 14px;">Terms</div>
+    <h1 style="font-size:50px;line-height:1.08;font-weight:600;margin:0 0 18px;">Terms of use</h1>
+    <p style="font-size:19px;line-height:1.55;color:var(--muted);margin:0 0 12px;">The short version: we give you information and services. Every bid, and every consequence of it, is yours.</p>
+    <p style="font-size:13.5px;color:var(--muted);margin:0 0 40px;">Last updated 16 August 2026</p>
+    <sc-for list="{{ terms }}" as="t" hint-placeholder-count="8">
+      <div style="border-top:1px solid var(--line);padding:26px 0;">
+        <h2 style="font-size:23px;font-weight:600;margin:0 0 10px;">{{ t.h }}</h2>
+        <p style="font-size:16.5px;line-height:1.65;color:var(--muted);margin:0;">{{ t.b }}</p>
+      </div>
+    </sc-for>
+  </main>
+  </sc-if>
+
+  <footer style="border-top:1px solid var(--line);background:var(--surface);padding:34px 22px;">
+    <div style="max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <span style="width:26px;height:26px;flex:none;border-radius:8px;background:linear-gradient(158deg,#6d9aff 0%,#3a63e0 40%,#1b2c68 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.38),inset 0 -1px 0 rgba(0,0,0,0.38),inset 0 0 0 1px rgba(255,255,255,0.13),0 1px 2px rgba(9,17,44,0.45),0 10px 20px -9px var(--logo-cast);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 32 32" width="17" height="17" fill="none" aria-hidden="true"><g transform="translate(0,0.8)" fill="rgba(6,14,40,0.38)"><path d="M16 4.6 28.6 12.9H3.4Z"></path><rect x="4.6" y="14.2" width="22.8" height="2.3" rx="0.7"></rect><rect x="7.6" y="21.0" width="3.4" height="4.4" rx="0.6"></rect><rect x="14.3" y="19.0" width="3.4" height="6.4" rx="0.6"></rect><rect x="21.0" y="17.2" width="3.4" height="8.2" rx="0.6"></rect><rect x="3.4" y="26.6" width="25.2" height="2.4" rx="0.8"></rect></g><g fill="#f2f6ff"><path d="M16 4.6 28.6 12.9H3.4Z"></path><rect x="4.6" y="14.2" width="22.8" height="2.3" rx="0.7"></rect><rect x="7.6" y="21.0" width="3.4" height="4.4" rx="0.6"></rect><rect x="14.3" y="19.0" width="3.4" height="6.4" rx="0.6"></rect><rect x="21.0" y="17.2" width="3.4" height="8.2" rx="0.6"></rect><rect x="3.4" y="26.6" width="25.2" height="2.4" rx="0.8"></rect></g></svg></span><span style="display:flex;align-items:baseline;font-size:15px;font-weight:600;letter-spacing:-0.024em;text-shadow:0 -1px 0 var(--logo-hi),0 1px 0 var(--logo-e1);"><span style="color:var(--ink);">Bank</span><span style="color:var(--primary);">Auctions.ai</span></span>
+        
+      </div>
+      <p style="font-size:12.5px;line-height:1.6;color:var(--muted);margin:0;max-width:76ch;">Content is illustrative and not legal, financial or investment advice. All bidding takes place on the lender's own e-auction portal.</p>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;section&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;about&quot;,&quot;education&quot;,&quot;sarfaesi&quot;,&quot;faqs&quot;,&quot;expert&quot;,&quot;investors&quot;,&quot;community&quot;,&quot;support&quot;,&quot;privacy&quot;,&quot;terms&quot;],&quot;default&quot;:&quot;about&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const TABS = [
+  ['about', 'About us'], ['education', 'How auctions work'], ['sarfaesi', 'SARFAESI Act'],
+  ['faqs', 'FAQs'], ['expert', 'Consult an expert'], ['investors', 'Investors'],
+  ['community', 'Community'], ['support', 'Support'], ['privacy', 'Privacy'], ['terms', 'Terms']
+];
+
+const STEPS = [
+  { n: '1', title: 'The loan turns non-performing', body: 'A borrower misses payments for 90 days and the account is classified as a non-performing asset by the lender.', you: 'Nothing is public yet. This is where our 90-day view of early-stage stress begins, well before a sale notice appears.' },
+  { n: '2', title: 'Demand notice under Section 13(2)', body: 'The lender issues a formal demand giving the borrower 60 days to repay the full outstanding amount.', you: 'The first public signal. A property at this stage may still never reach auction — many borrowers settle once the notice lands.' },
+  { n: '3', title: 'Possession under Section 13(4)', body: 'If the demand is not met, the lender takes possession — symbolic on paper, or physical with the help of the district magistrate.', you: 'The single most important distinction on this site. Physical possession means the keys exist. Symbolic means they do not.' },
+  { n: '4', title: 'Valuation and reserve price', body: 'An approved valuer assesses the property and the authorised officer sets a reserve price, usually at or below that valuation.', you: 'The reserve is what the lender needs to recover — not what the asset is worth. Judge it against clearing prices, not against itself.' },
+  { n: '5', title: 'Sale notice and 30-day window', body: 'A public sale notice is published, giving at least 30 days before the auction, with inspection dates and the EMD deadline.', you: 'Your window to inspect, verify title, arrange finance and deposit the earnest money. Most buyers underestimate how short it is.' },
+  { n: '6', title: 'The e-auction', body: 'Bidding takes place on the lender\'s approved e-auction portal at the appointed hour, with a fixed bid increment.', you: 'You bid there, not here. We prepare you with our data and a suggested maximum bid — the price you enter is your decision. Concierge customers are hand-held from research right through to signing the sale deed.' },
+  { n: '7', title: 'Sale certificate and registration', body: 'The winner pays 25% immediately and the balance within 15 days, after which the lender issues a sale certificate and hands over possession.', you: 'Budget for stamp duty, registration and any arrears. Our all-in cost view on each property does this arithmetic for you.' }
+];
+
+const SARFAESI = [
+  { tag: 'What it does', title: 'Lenders can sell without going to court', body: 'Before 2002, recovering a secured loan meant years of litigation. SARFAESI lets a lender take possession of the security and sell it directly, subject to strict notice requirements.' },
+  { tag: 'Section 13(2)', title: 'The 60-day demand notice', body: 'The lender must first demand the full outstanding amount and give the borrower 60 days. Only if that fails can enforcement proceed.' },
+  { tag: 'Section 13(4)', title: 'Taking possession', body: 'The lender may take possession of the secured asset. Symbolic possession is a paper act; physical possession, often with the district magistrate under Section 14, means the property is genuinely vacant and controlled.' },
+  { tag: 'The rules', title: '30 days\' notice, minimum', body: 'The Security Interest (Enforcement) Rules require a public sale notice at least 30 days before the auction, with the reserve price, EMD and inspection arrangements stated.' },
+  { tag: 'Section 17', title: 'The borrower can appeal', body: 'A borrower may apply to the Debts Recovery Tribunal against enforcement. A pending application or stay order is a material risk for a buyer, which is why we search for it on every property.' },
+  { tag: 'The outcome', title: 'Title passes by sale certificate', body: 'The successful bidder receives a sale certificate from the authorised officer, which is then registered. This is your root of title — not a conventional sale deed from the previous owner.' }
+];
+
+const FAQS = [
+  { q: 'Do you sell the properties?', a: 'No. We are an information and services platform. Every auction is run by the lender on its own e-auction portal, and every bid is placed by you, there, at a price you decide.' },
+  { q: 'What is the difference between physical and symbolic possession?', a: 'Physical possession means the lender has actually taken control of the property and can hand over keys. Symbolic possession is a legal formality on paper — the occupant may still be inside, and removing them becomes the buyer\'s problem. We label every property clearly, and you can filter results to physical possession only, free on every account.' },
+  { q: 'Are auction properties really cheaper?', a: 'Sometimes substantially, sometimes not at all. Reserve prices are set to recover a debt, not to reflect market value. Our fair-value verdict compares each reserve against guideline value and what comparable properties actually cleared at, so the discount is measured rather than claimed.' },
+  { q: 'Can I get a home loan on an auction property?', a: 'Often yes, but not always, and not from every lender. Properties our partner lenders will finance carry a loan-eligible badge, with an indicative amount and rate. Arrange approval before you deposit the EMD, not after.' },
+  { q: 'What is EMD and do I get it back?', a: 'Earnest money deposit — typically 10% of the reserve price, payable before the auction. If you do not win, it is refunded. If you win and then walk away, you forfeit it.' },
+  { q: 'What does the all-in cost include?', a: 'The winning bid plus stamp duty and registration, outstanding society and utility arrears, refurbishment, and any concierge fee. It routinely adds 15–20% to the hammer price.' },
+  { q: 'Which lenders do you cover?', a: 'Public and private banks, NBFCs, housing finance companies, co-operative banks and societies, small finance banks, asset reconstruction companies, and court, DRT and liquidator sales.' },
+  { q: 'Is there anything above the ₹499 Pro plan?', a: 'Yes. Gold (₹1,399, 15 properties) and Diamond (₹2,099, 25) unlock more properties in one city on the same one-time, 90-day basis as Pro — for buyers comparing many listings at once.', open: false },
+  { q: 'What exactly does the ₹499 Pro plan give me?', a: 'One payment of ₹499 lets you view the full details of up to five properties in one city, on your registered mobile number: the name of the lender, the auction notice to download, the photographs of the property as given by the bank, the exact pincode, locality price history and similar properties within 10 km — plus saved searches, filters and WhatsApp alerts. Nothing recurring, and a fresh pack covers another city.' },
+  { q: 'What is in the ₹1,999 research report?', a: 'On a single property: photos and videos captured by our field visit engineer, the Google Maps location, the encumbrance certificate, copies of property tax receipts where the bank releases them, the guideline value, the layout sketch, a recommended minimum and maximum bid, the engineer\'s detailed ground report on other amenities and landmarks in the vicinity, and a legal opinion from an independent legal practitioner on any liabilities or risks a buyer should be aware of. It is released only after our verifier approves the engineer\'s report; until then the listing says the report and media will be available soon.' },
+  { q: 'Do you bid for me?', a: 'No. We provide intelligence and data on the property and the prices only. You register yourself on the portal where the bank auctions the property, pay the EMD there and enter your winning bid yourself. We never handle bid money and we are not an agent of any lender.' },
+  { q: 'What does Concierge Services cover?', a: 'Successful bidders only. We obtain the sale confirmation letter from the bank, get the Sale Certificate executed in your name, prepare the legal documentation and register the property in your name, and arrange a loan through our partner lenders. From 1% of the successful bid price, rising with extras you choose — taking possession, clearing arrears, mutation and tax name change, utility transfers, tenanting and rent collection, or maintaining the property for up to three years.' },
+  { q: 'I live abroad. Can I still buy?', a: 'Yes. The NRI desk gives you a dedicated relationship manager who owns your file, a property lawyer reviewing title and sale terms, live video viewing of the property and street, and guidance on NRE and NRO remittance.' }
+];
+
+const PRIVACY = [
+  { h: 'What we collect', b: 'Your name, mobile number and email when you create an account or contact us; your saved searches, watchlist and browsing activity on the platform; payment details processed by our payment gateway, which we do not store; and documents you share with us for a concierge engagement.' },
+  { h: 'What we deliberately do not publish', b: 'Auction notices are public documents and often name the borrower. We publish facts about the asset — location, area, reserve price, possession status — and redact borrower-identifying information at the point of publication. We do not build or sell profiles of defaulting borrowers.' },
+  { h: 'How we use your data', b: 'To show you relevant properties, send the alerts you asked for, deliver concierge services, process payments, and improve the product. Aggregate, de-identified demand data informs our market intelligence — never anything traceable to you.' },
+  { h: 'WhatsApp and email alerts', b: 'You receive alerts only for searches you save and channels you opt into. Every message carries an unsubscribe route, and opting out of marketing never affects service messages about an active concierge case.' },
+  { h: 'Who we share with', b: 'Partner lenders receive your details only when you ask us to arrange finance. Advocates, valuers and surveyors receive what a specific concierge engagement requires. Our hosting, analytics and payment processors act on our instructions under contract. We do not sell personal data.' },
+  { h: 'Your rights under the DPDP Act', b: 'You may access, correct, or erase your personal data, withdraw consent at any time, and nominate someone to exercise these rights on your behalf. Write to privacy@bankauctions.ai and we will respond within seven working days.' },
+  { h: 'Retention', b: 'Account data is kept while your account is active and for one year after closure. Concierge case files are kept for seven years, as professional and tax rules require. Aggregate market data is retained indefinitely in de-identified form.' },
+  { h: 'Security', b: 'Encryption in transit and at rest, role-based access for our staff, and an immutable audit log on every published field. No system is perfect; we will notify you and the Data Protection Board promptly of any breach affecting your data.' }
+];
+
+const TERMS = [
+  { h: 'What this service is', b: 'BankAuctions.ai provides intelligence and data on auction properties and prices. We aggregate publicly issued auction notices and add our own verification, field research and analysis. We are not an auctioneer, an agent of any lender, a broker, or a party to any sale, and we never receive or hold bid money.' },
+  { h: 'You register and bid yourself', b: 'We do not bid, and we cannot bid, on your behalf. Registering on the portal where the bank or its auctioneer conducts the sale, completing that portal\'s KYC, paying the earnest money deposit to the lender, and entering the winning bid are all done by the bidder. Our recommended minimum and maximum bid is guidance derived from observed outcomes; the price you bid, and whether you bid at all, is entirely your decision and your risk.' },
+  { h: 'Accuracy of listings', b: 'We work hard to verify and deduplicate, but source notices contain errors, are amended, and are sometimes withdrawn without warning. Always read the original notice, which we attach to every property, and confirm particulars with the lender before committing funds.' },
+  { h: 'No legal or financial advice', b: 'Nothing on this platform is legal, tax, valuation or investment advice. Our risk flags and verdicts are informational. For advice on a specific property, engage an advocate or a registered valuer — we can introduce you to one.' },
+  { h: 'Payments and what each one buys', b: 'Searching, filtering, saved searches and alerts are free. Pro is a single payment of ₹499 that lets you view the full details of up to five properties in one city, tied to your registered mobile number, for 90 days — the name of the lender, the auction notice to download, the photographs of the property as given by the bank, the exact pincode, locality price history and similar properties within 10 km. The research and field report is ₹1,999 for one property and opens the field visit engineer\'s photographs and video, the Google Maps location, the encumbrance certificate, copies of tax receipts where the bank releases them, the guideline value, the layout sketch, a recommended minimum and maximum bid, the engineer\'s ground report on nearby amenities and landmarks, and an independent legal opinion. Every payment is processed by a PCI-DSS certified gateway and acknowledged with a receipt and GST invoice on WhatsApp and email. Nothing renews automatically.' },
+  { h: 'When the research report becomes available', b: 'A research report is published only after our verifier approves the field visit engineer\'s report. Until that approval the section on the listing states that the paid research report and the images and videos of the property will be made available soon, and the report cannot be purchased. If a report is withdrawn after purchase because it fails re-verification, the fee for that property is refunded in full.' },
+  { h: 'Concierge Services', b: 'Concierge Services is available to successful bidders only. It covers obtaining the sale confirmation letter from the bank, executing the Sale Certificate issued by the bank in the successful bidder\'s name, preparing the legal documentation and registering the property in your name, and arranging a loan through our tie-up with partner lenders. It starts at 1% of the successful bid price and rises with the additional services you choose — possession, arrears clearance, mutation, utility transfers, tenanting, or maintaining the property for up to three years. It is quoted and agreed in writing before work begins, and fees for work already performed are not refundable.' },
+  { h: 'Acceptable use', b: 'Do not scrape, resell or redistribute our data, attempt to circumvent Pro entitlements, or use the platform to interfere with any auction. Accounts doing so are closed without refund.' },
+  { h: 'Limitation of liability', b: 'To the extent permitted by law, our liability for any claim is limited to the fees you paid us in the twelve months preceding it. We are not liable for losses arising from your bidding decisions, from a lender\'s conduct, or from errors in a source notice.' },
+  { h: 'Governing law', b: 'These terms are governed by Indian law, and the courts at Chennai have exclusive jurisdiction.' }
+];
+
+class Component extends DCLogic {
+  state = { tab: null };
+  componentDidMount() {
+    const h = (typeof window !== 'undefined' && window.location.hash || '').replace('#', '');
+    if (h && TABS.some(t => t[0] === h)) this.setState({ tab: h });
+  }
+  renderVals() {
+    const tab = this.state.tab ?? (this.props.section || 'about');
+    return {
+      theme: this.props.theme || 'dark',
+      tabs: TABS.map(t => ({
+        label: t[1],
+        bg: t[0] === tab ? 'var(--surface)' : 'transparent',
+        weight: t[0] === tab ? '600' : '500',
+        select: () => { this.setState({ tab: t[0] }); if (typeof window !== 'undefined') window.scrollTo(0, 0); }
+      })),
+      isAbout: tab === 'about', isEducation: tab === 'education', isSarfaesi: tab === 'sarfaesi',
+      isFaqs: tab === 'faqs', isExpert: tab === 'expert', isInvestors: tab === 'investors',
+      isCommunity: tab === 'community', isSupport: tab === 'support',
+      isPrivacy: tab === 'privacy', isTerms: tab === 'terms',
+      steps: STEPS, sarfaesiCards: SARFAESI, faqs: FAQS, privacy: PRIVACY, terms: TERMS
+    };
+  }
+}
+</script>
+</body>
+</html>

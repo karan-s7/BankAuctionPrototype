@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>City auction map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<style>
+  html, body { margin:0; height:100%; background:#f5f5f7;
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif; }
+  #map { position:absolute; inset:0; }
+  .leaflet-container { background:#ececed; }
+  .leaflet-control-attribution { font-size:9px; background:rgba(255,255,255,0.8); }
+  .lbl { font-size:11px; font-weight:600; color:#1d1d1f; letter-spacing:-0.01em;
+    text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 4px #fff; white-space:nowrap; }
+  .pop h4 { font-size:15px; margin:0 0 8px; font-weight:600; letter-spacing:-0.01em; }
+  .pop table { border-collapse:collapse; font-size:12.5px; }
+  .pop td { padding:3px 0; color:#6e6e73; }
+  .pop td:last-child { text-align:right; color:#1d1d1f; font-weight:500; padding-left:18px; }
+  .legend { background:rgba(255,255,255,0.92); backdrop-filter:blur(12px); border-radius:14px;
+    padding:12px 14px; box-shadow:0 4px 16px rgba(0,0,0,0.10); }
+  .legend .t { font-size:11px; font-weight:600; color:#1d1d1f; margin-bottom:8px; letter-spacing:-0.01em; }
+  .ramp { display:flex; align-items:center; gap:8px; }
+  .ramp .bar { width:136px; height:7px; border-radius:4px;
+    background:linear-gradient(90deg,#dbeafe,#a5c8f5,#5b9be0,#2f6fbf,#123f7d); }
+  .ramp span { font-size:10px; color:#6e6e73; }
+  .note { font-size:11px; color:#6e6e73; margin-top:8px; max-width:184px; line-height:1.45; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  var CITIES = {
+    chennai: { label:'Chennai', skip:['Sriperumbudur','Thiruporur'], data:[
+      { name:'Ambattur',       lat:13.1143, lng:80.1548, n:96, d:44, c:11, band:'₹18–52 L' },
+      { name:'Avadi',          lat:13.1147, lng:80.1098, n:74, d:39, c:12, band:'₹14–41 L' },
+      { name:'Red Hills',      lat:13.1900, lng:80.1800, n:54, d:38, c:14, band:'₹9–34 L' },
+      { name:'Thiruporur',     lat:12.7250, lng:80.1900, n:71, d:41, c:9,  band:'₹12–48 L' },
+      { name:'Medavakkam',     lat:12.9174, lng:80.1920, n:63, d:33, c:18, band:'₹22–61 L' },
+      { name:'Tambaram',       lat:12.9229, lng:80.1275, n:88, d:29, c:21, band:'₹19–58 L' },
+      { name:'Chromepet',      lat:12.9516, lng:80.1462, n:57, d:27, c:23, band:'₹21–54 L' },
+      { name:'Sholinganallur', lat:12.9010, lng:80.2279, n:66, d:31, c:19, band:'₹28–95 L' },
+      { name:'Pallikaranai',   lat:12.9350, lng:80.2050, n:52, d:26, c:24, band:'₹31–72 L' },
+      { name:'Velachery',      lat:12.9750, lng:80.2210, n:47, d:24, c:27, band:'₹38–86 L' },
+      { name:'Perungudi',      lat:12.9650, lng:80.2450, n:34, d:22, c:29, band:'₹42–98 L' },
+      { name:'Porur',          lat:13.0350, lng:80.1560, n:61, d:30, c:20, band:'₹24–77 L' },
+      { name:'Kolathur',       lat:13.1200, lng:80.2200, n:69, d:35, c:16, band:'₹16–46 L' },
+      { name:'Madhavaram',     lat:13.1480, lng:80.2300, n:43, d:36, c:15, band:'₹11–38 L' },
+      { name:'Adyar',          lat:13.0067, lng:80.2570, n:12, d:14, c:33, band:'₹88–260 L' },
+      { name:'Anna Nagar',     lat:13.0850, lng:80.2101, n:21, d:17, c:31, band:'₹64–180 L' },
+      { name:'Sriperumbudur',  lat:12.9700, lng:79.9500, n:29, d:42, c:10, band:'₹24–340 L' }
+    ]},
+    hyderabad: { label:'Hyderabad', skip:['Shamshabad'], data:[
+      { name:'Kukatpally',     lat:17.4948, lng:78.3996, n:71, d:36, c:15, band:'₹18–62 L' },
+      { name:'Miyapur',        lat:17.4966, lng:78.3573, n:64, d:34, c:17, band:'₹22–70 L' },
+      { name:'Nizampet',       lat:17.5183, lng:78.3866, n:58, d:33, c:18, band:'₹20–58 L' },
+      { name:'Medchal',        lat:17.6269, lng:78.4816, n:52, d:41, c:11, band:'₹8–36 L' },
+      { name:'Uppal',          lat:17.4058, lng:78.5590, n:61, d:37, c:14, band:'₹15–49 L' },
+      { name:'LB Nagar',       lat:17.3457, lng:78.5522, n:57, d:31, c:19, band:'₹19–64 L' },
+      { name:'Saidabad',       lat:17.3520, lng:78.5030, n:44, d:35, c:16, band:'₹12–41 L' },
+      { name:'Kompally',       lat:17.5375, lng:78.4838, n:39, d:32, c:18, band:'₹21–74 L' },
+      { name:'Gachibowli',     lat:17.4400, lng:78.3489, n:26, d:19, c:29, band:'₹68–240 L' },
+      { name:'Banjara Hills',  lat:17.4156, lng:78.4347, n:14, d:15, c:32, band:'₹95–420 L' },
+      { name:'Begumpet',       lat:17.4435, lng:78.4645, n:18, d:21, c:27, band:'₹58–190 L' },
+      { name:'Shamshabad',     lat:17.2403, lng:78.4294, n:31, d:43, c:10, band:'₹9–52 L' }
+    ]},
+    bengaluru: { label:'Bengaluru', skip:['Anekal','Devanahalli'], data:[
+      { name:'Krishnarajapuram', lat:13.0108, lng:77.6959, n:118, d:31, c:19, band:'₹28–86 L' },
+      { name:'Whitefield',       lat:12.9698, lng:77.7500, n:96,  d:26, c:24, band:'₹42–140 L' },
+      { name:'Hoskote',          lat:13.0707, lng:77.7980, n:88,  d:39, c:12, band:'₹12–48 L' },
+      { name:'Yelahanka',        lat:13.1007, lng:77.5963, n:92,  d:33, c:17, band:'₹24–92 L' },
+      { name:'Uttarahalli',      lat:12.9067, lng:77.5461, n:79,  d:29, c:21, band:'₹31–78 L' },
+      { name:'Kengeri',          lat:12.9166, lng:77.4826, n:74,  d:35, c:15, band:'₹19–61 L' },
+      { name:'Begur',            lat:12.8720, lng:77.6280, n:66,  d:34, c:16, band:'₹22–68 L' },
+      { name:'Electronic City',  lat:12.8452, lng:77.6602, n:71,  d:28, c:22, band:'₹34–96 L' },
+      { name:'Bidarahalli',      lat:13.0330, lng:77.7350, n:58,  d:38, c:13, band:'₹14–44 L' },
+      { name:'Basaveshwaranagar',lat:12.9946, lng:77.5385, n:34,  d:20, c:28, band:'₹72–210 L' },
+      { name:'Anekal',           lat:12.7110, lng:77.6960, n:63,  d:42, c:10, band:'₹8–39 L' },
+      { name:'Devanahalli',      lat:13.2437, lng:77.7127, n:47,  d:40, c:11, band:'₹11–58 L' }
+    ]},
+    coimbatore: { label:'Coimbatore', skip:['Tirupur','Mettupalayam'], data:[
+      { name:'Peelamedu',      lat:11.0269, lng:77.0028, n:58, d:27, c:23, band:'₹24–72 L' },
+      { name:'Saravanampatti', lat:11.0780, lng:77.0060, n:64, d:29, c:21, band:'₹26–84 L' },
+      { name:'Singanallur',    lat:11.0060, lng:77.0300, n:52, d:33, c:17, band:'₹16–48 L' },
+      { name:'R.S. Puram',     lat:11.0064, lng:76.9497, n:21, d:16, c:31, band:'₹62–180 L' },
+      { name:'Kuniyamuthur',   lat:10.9450, lng:76.9450, n:47, d:36, c:14, band:'₹12–39 L' },
+      { name:'Podanur',        lat:10.9720, lng:76.9600, n:38, d:34, c:16, band:'₹11–35 L' },
+      { name:'Thudiyalur',     lat:11.0850, lng:76.9410, n:41, d:32, c:18, band:'₹14–44 L' },
+      { name:'Sulur',          lat:11.0270, lng:77.1250, n:44, d:38, c:12, band:'₹9–41 L' },
+      { name:'Mettupalayam',   lat:11.2990, lng:76.9370, n:34, d:40, c:11, band:'₹7–32 L' },
+      { name:'Tirupur',        lat:11.1085, lng:77.3411, n:57, d:37, c:13, band:'₹10–96 L' }
+    ]},
+    kerala: { label:'Kerala', skip:[], data:[
+      { name:'Kakkanad',           lat:10.0159, lng:76.3419, n:96,  d:28, c:22, band:'₹28–98 L' },
+      { name:'Edappally',          lat:10.0261, lng:76.3080, n:74,  d:25, c:25, band:'₹36–120 L' },
+      { name:'Aluva',              lat:10.1081, lng:76.3520, n:82,  d:31, c:19, band:'₹22–74 L' },
+      { name:'Maradu',             lat:9.9430,  lng:76.3220, n:51,  d:26, c:24, band:'₹34–105 L' },
+      { name:'Kothamangalam',      lat:10.0587, lng:76.6320, n:63,  d:37, c:13, band:'₹9–38 L' },
+      { name:'Thrissur',           lat:10.5276, lng:76.2144, n:118, d:34, c:16, band:'₹12–68 L' },
+      { name:'Palakkad',           lat:10.7867, lng:76.6548, n:71,  d:38, c:12, band:'₹8–42 L' },
+      { name:'Kozhikode',          lat:11.2588, lng:75.7804, n:88,  d:32, c:18, band:'₹14–72 L' },
+      { name:'Malappuram',         lat:11.0510, lng:76.0711, n:79,  d:36, c:14, band:'₹9–46 L' },
+      { name:'Thiruvananthapuram', lat:8.5241,  lng:76.9366, n:94,  d:29, c:21, band:'₹18–88 L' },
+      { name:'Kollam',             lat:8.8932,  lng:76.6141, n:66,  d:35, c:15, band:'₹11–52 L' },
+      { name:'Kottayam',           lat:9.5916,  lng:76.5222, n:58,  d:33, c:17, band:'₹12–56 L' },
+      { name:'Kannur',             lat:11.8745, lng:75.3704, n:61,  d:34, c:16, band:'₹10–48 L' }
+    ]}
+  };
+
+  function colorFor(d) {
+    return d >= 40 ? '#123f7d'
+         : d >= 34 ? '#2f6fbf'
+         : d >= 28 ? '#5b9be0'
+         : d >= 22 ? '#a5c8f5'
+         : d >= 16 ? '#c9dcf8'
+         : '#dbeafe';
+  }
+
+  function colorForCount(n) {
+    return n >= 100 ? '#123f7d'
+         : n >= 75  ? '#2f6fbf'
+         : n >= 55  ? '#5b9be0'
+         : n >= 40  ? '#a5c8f5'
+         : n >= 25  ? '#c9dcf8'
+         : '#dbeafe';
+  }
+
+  var LANDMARK_STYLE = {
+    'Rail transit':     { icon: '🚆', color: '#2f6fbf' },
+    'Bus stand':        { icon: '🚌', color: '#c9660a' },
+    'School':           { icon: '🎓', color: '#1d8a4a' },
+    'College':          { icon: '🎓', color: '#0f6e3f' },
+    'Multi-speciality hospital': { icon: '✚', color: '#c0392b' },
+    'Retail & cinema':  { icon: '🛍', color: '#7a4fc4' },
+    'Employment hub':   { icon: '💼', color: '#555' },
+    'Airport':          { icon: '✈', color: '#0071e3' }
+  };
+
+  var params = new URLSearchParams(location.search);
+  var mode = params.get('mode') === 'cluster' ? 'cluster' : (params.get('mode') === 'landmarks' ? 'landmarks' : 'heat');
+  var key = (params.get('city') || 'chennai').toLowerCase();
+  var city = CITIES[key] || CITIES.chennai;
+  var focus = params.get('focus');
+  var metric = params.get('metric') === 'count' ? 'count' : 'discount';
+
+  var map = L.map('map', {
+    zoomControl: mode !== 'landmarks',
+    scrollWheelZoom: false,
+    attributionControl: true
+  });
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 18,
+    opacity: mode === 'landmarks' ? 1 : 0.62
+  }).addTo(map);
+
+  if (mode === 'landmarks') {
+    var pts = [];
+    try { pts = JSON.parse(params.get('pts') || '[]'); } catch (e) { pts = []; }
+    var f = city.data.filter(function (l) { return l.name.toLowerCase() === (focus || '').toLowerCase(); })[0];
+    var center = f ? [f.lat, f.lng] : [city.data[0].lat, city.data[0].lng];
+    var mBounds = [center];
+    L.marker(center, {
+      icon: L.divIcon({ className: 'lbl', html: '<div style="background:#0071e3;color:#fff;border-radius:50%;width:14px;height:14px;box-shadow:0 0 0 4px rgba(0,113,227,0.28);"></div>', iconSize: [14, 14], iconAnchor: [7, 7] })
+    }).addTo(map).bindPopup('<div class="pop"><h4>' + (focus || 'This property') + '</h4></div>');
+    pts.forEach(function (p) {
+      if (typeof p.lat !== 'number' || typeof p.lng !== 'number') return;
+      mBounds.push([p.lat, p.lng]);
+      var st = LANDMARK_STYLE[p.kind] || { icon: '📍', color: '#1d1d1f' };
+      L.marker([p.lat, p.lng], {
+        icon: L.divIcon({
+          className: 'lbl',
+          html: '<div style="display:flex;align-items:center;gap:5px;"><span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:' + st.color + ';color:#fff;font-size:12px;box-shadow:0 1px 4px rgba(0,0,0,0.3);">' + st.icon + '</span><span class="lbl">' + p.name + ' · ' + p.dist + '</span></div>',
+          iconSize: [0, 0], iconAnchor: [12, 12]
+        })
+      }).addTo(map).bindPopup('<div class="pop"><h4>' + p.name + '</h4><table><tr><td>Type</td><td>' + p.kind + '</td></tr><tr><td>Distance</td><td>' + p.dist + '</td></tr></table></div>');
+    });
+    map.fitBounds(mBounds, { padding: [46, 46], maxZoom: 15 });
+    var legend2 = L.control({ position: 'bottomleft' });
+    legend2.onAdd = function () {
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML = '<div class="t">Landmarks near this property</div><div class="note">Schools, colleges, transport and amenities within a few kilometres. Tap a marker for distance.</div>';
+      return div;
+    };
+    legend2.addTo(map);
+  } else {
+
+  var bounds = [];
+  city.data.forEach(function (l) {
+    if (city.skip.indexOf(l.name) === -1) bounds.push([l.lat, l.lng]);
+    var radius = (mode === 'heat' ? 420 : 300) + Math.sqrt(l.n) * (mode === 'heat' ? 230 : 150);
+    var highlighted = focus && l.name.toLowerCase() === focus.toLowerCase();
+
+    var circle = L.circle([l.lat, l.lng], {
+      radius: radius,
+      color: highlighted ? '#0071e3' : '#1d1d1f',
+      weight: highlighted ? 2.4 : 0.7,
+      opacity: highlighted ? 1 : 0.35,
+      fillColor: metric === 'count' ? colorForCount(l.n) : colorFor(l.d),
+      fillOpacity: 0.66
+    }).addTo(map).bindPopup(
+      '<div class="pop"><h4>' + l.name + '</h4><table>' +
+      '<tr><td>Live properties</td><td>' + l.n + '</td></tr>' +
+      '<tr><td>Median discount</td><td>' + l.d + '%</td></tr>' +
+      '<tr><td>Clearing rate</td><td>' + l.c + '%</td></tr>' +
+      '<tr><td>Reserve range</td><td>' + l.band + '</td></tr>' +
+      '</table></div>'
+    );
+
+    circle.on('mouseover', function (e) { circle.openPopup(e.latlng); });
+    circle.on('mousemove', function (e) { if (circle.isPopupOpen()) circle.getPopup().setLatLng(e.latlng); });
+    circle.on('mouseout', function () { circle.closePopup(); });
+    circle.on('click', function () {
+      circle.openPopup();
+      try { parent.postMessage({ source: 'city-map', type: 'locality', name: l.name, n: l.n }, '*'); } catch (err) {}
+    });
+
+    if ((mode === 'heat' || metric === 'count') && (l.n >= (metric === 'count' ? 34 : 60) || highlighted)) {
+      L.marker([l.lat, l.lng], {
+        interactive: false,
+        icon: L.divIcon({
+          className: 'lbl',
+          html: l.name + ' · ' + (metric === 'count' ? l.n : l.d + '%'),
+          iconSize: [0, 0],
+          iconAnchor: [-8, -Math.round(radius / 95)]
+        })
+      }).addTo(map);
+    }
+  });
+
+  if (focus) {
+    var f2 = city.data.filter(function (l) { return l.name.toLowerCase() === focus.toLowerCase(); })[0];
+    if (f2) { map.setView([f2.lat, f2.lng], 12); }
+    else { map.fitBounds(bounds, { padding: [30, 30], maxZoom: 12 }); }
+  } else {
+    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 12 });
+  }
+
+  var legend = L.control({ position: 'bottomleft' });
+  legend.onAdd = function () {
+    var div = L.DomUtil.create('div', 'legend');
+    div.innerHTML = metric === 'count'
+      ? '<div class="t">Live properties under auction</div>' +
+        '<div class="ramp"><span>under 25</span><div class="bar"></div><span>100+</span></div>' +
+        '<div class="note">Each label shows the locality and how many properties are live there. Tap a circle for full detail.</div>'
+      : '<div class="t">Median discount to guideline value</div>' +
+        '<div class="ramp"><span>10%</span><div class="bar"></div><span>55%+</span></div>' +
+        '<div class="note">Circle size shows how many properties are live. Tap one for its clearing rate.</div>';
+    return div;
+  };
+  legend.addTo(map);
+  }
+</script>
+</body>
+</html>

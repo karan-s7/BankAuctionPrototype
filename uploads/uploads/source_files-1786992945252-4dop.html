@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body { margin:0; background:#f5f5f7; color:#1d1d1f;
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#0071e3; text-decoration:none; }
+  a:hover { color:#0058b0; text-decoration:underline; }
+  table { border-collapse:collapse; }
+  button { font-family:inherit; cursor:pointer; }
+  input, select, textarea { font-family:inherit; color:#1d1d1f; }
+  h1, h2, h3 { letter-spacing:-0.022em; }
+</style>
+</helmet>
+<div style="background:#f5f5f7;min-height:100vh;">
+
+  <header style="background:#1d1d1f;color:#f5f5f7;">
+    <div style="max-width:1400px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:9px;flex:none;">
+        <span style="width:28px;height:28px;border-radius:8px;background:linear-gradient(140deg,#0071e3 0%,#1aa3c8 55%,#14b87a 100%);display:flex;align-items:center;justify-content:center;">
+          <span style="width:11px;height:11px;background:#fff;transform:rotate(45deg);border-radius:2px;display:block;"></span>
+        </span>
+        <span style="font-size:17px;font-weight:600;letter-spacing:-0.03em;"><span style="color:#4da3f0;">bankauction</span><span style="color:#5cd6a0;">iq</span></span>
+      </div>
+      <span style="font-size:12px;font-weight:600;background:#48484a;padding:5px 12px;border-radius:980px;letter-spacing:0.02em;">Internal admin · not linked from the public site</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <select onChange="{{ onCityChange }}" value="{{ city }}" style="border:1px solid #48484a;background:#2c2c2e;color:#f5f5f7;border-radius:980px;padding:8px 14px;font-size:13px;font-weight:500;">
+          <option value="chennai">Chennai</option>
+          <option value="hyderabad">Hyderabad</option>
+          <option value="coimbatore">Coimbatore</option>
+          <option value="kerala">Kerala</option>
+          <option value="bengaluru">Bengaluru</option>
+        </select>
+        <span style="font-size:13px;color:#a1a1a6;">{{ admin.verifier }}</span>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;">
+    <aside style="flex:1 1 200px;max-width:240px;background:#fff;border-right:1px solid #e8e8ed;padding:22px 0;min-height:calc(100vh - 52px);">
+      <div style="font-size:11.5px;font-weight:600;color:#6e6e73;text-transform:uppercase;letter-spacing:0.05em;padding:0 20px 14px;">Console</div>
+      <div style="display:flex;flex-direction:column;">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="13">
+          <button onClick="{{ n.select }}" style="border:none;text-align:left;background:{{ n.bg }};font-size:13.5px;font-weight:{{ n.weight }};padding:11px 20px;border-left:3px solid {{ n.accent }};color:#1d1d1f;">{{ n.label }}</button>
+        </sc-for>
+      </div>
+    </aside>
+
+    <div style="flex:100 1 560px;min-width:0;padding:26px 22px 60px;">
+
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin:0 0 22px;">
+        <div>
+          <h1 style="font-size:26px;font-weight:600;margin:0 0 4px;">{{ sectionTitle }} · {{ cityLabel }}</h1>
+          <p style="font-size:14px;color:#6e6e73;margin:0;">{{ sectionSubtitle }}</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button style="border:1px solid #d2d2d7;background:#fff;font-size:13.5px;font-weight:500;padding:10px 16px;border-radius:980px;white-space:nowrap;" style-hover="background:#f0f0f2">Run crawlers now</button>
+          <button style="border:none;background:#0071e3;color:#fff;font-size:13.5px;font-weight:500;padding:10px 18px;border-radius:980px;white-space:nowrap;" style-hover="background:#0058b0">Add source</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin:0 0 22px;">
+        <div style="background:#fff;border-radius:16px;padding:20px;"><div style="font-size:12.5px;color:#6e6e73;">Coverage vs expected</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;">{{ admin.coverage }}</div><div style="font-size:12.5px;color:#148f5b;">target 95%</div></div>
+        <div style="background:#fff;border-radius:16px;padding:20px;"><div style="font-size:12.5px;color:#6e6e73;">Median freshness</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;">{{ admin.freshness }}</div><div style="font-size:12.5px;color:#6e6e73;">notice to published</div></div>
+        <div style="background:#fff;border-radius:16px;padding:20px;"><div style="font-size:12.5px;color:#6e6e73;">Duplicate rate</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;">{{ admin.dupeRate }}</div><div style="font-size:12.5px;color:#b25000;">watch this week</div></div>
+        <div style="background:#fff;border-radius:16px;padding:20px;"><div style="font-size:12.5px;color:#6e6e73;">Outcome capture</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;">{{ admin.outcomeRate }}</div><div style="font-size:12.5px;color:#0071e3;">the number that matters</div></div>
+        <div style="background:#fff;border-radius:16px;padding:20px;"><div style="font-size:12.5px;color:#6e6e73;">Loan-eligibility flagged</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;">{{ admin.loanFlagged }}</div><div style="font-size:12.5px;color:#6e6e73;">of live properties</div></div>
+      </div>
+
+      <div style="background:#fff;border-radius:18px;overflow:hidden;margin:0 0 22px;">
+        <div style="display:flex;gap:6px;padding:16px 20px;border-bottom:1px solid #f0f0f2;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:13px;font-weight:600;background:#f5f5f7;padding:7px 14px;border-radius:980px;">Needs review · {{ admin.review }}</span>
+          <span style="font-size:13px;color:#6e6e73;padding:7px 14px;">Possible duplicates · {{ admin.dupes }}</span>
+          <span style="font-size:13px;color:#6e6e73;padding:7px 14px;">Published today · {{ admin.published }}</span>
+          <input type="text" placeholder="Search notices, properties, IDs…" style="margin-left:auto;border:1px solid #d2d2d7;border-radius:980px;padding:9px 16px;font-size:13.5px;flex:1 1 200px;max-width:280px;" />
+        </div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;min-width:760px;font-size:13.5px;">
+            <thead>
+              <tr style="background:#f5f5f7;">
+                <th style="text-align:left;padding:11px 20px;font-size:11.5px;font-weight:600;color:#6e6e73;text-transform:uppercase;letter-spacing:0.04em;">Source</th>
+                <th style="text-align:left;padding:11px 12px;font-size:11.5px;font-weight:600;color:#6e6e73;text-transform:uppercase;letter-spacing:0.04em;">Extracted property</th>
+                <th style="text-align:right;padding:11px 12px;font-size:11.5px;font-weight:600;color:#6e6e73;text-transform:uppercase;letter-spacing:0.04em;">Reserve</th>
+                <th style="text-align:right;padding:11px 12px;font-size:11.5px;font-weight:600;color:#6e6e73;text-transform:uppercase;letter-spacing:0.04em;">Confidence</th>
+                <th style="text-align:left;padding:11px 12px;font-size:11.5px;font-weight:600;color:#6e6e73;text-transform:uppercase;letter-spacing:0.04em;">Flag</th>
+                <th style="text-align:right;padding:11px 20px;font-size:11.5px;font-weight:600;color:#6e6e73;text-transform:uppercase;letter-spacing:0.04em;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{ admin.queue }}" as="q" hint-placeholder-count="5">
+                <tr style="border-bottom:1px solid #f0f0f2;">
+                  <td style="padding:14px 20px;"><div style="font-weight:600;">{{ q.source }}</div><div style="font-size:12px;color:#6e6e73;">{{ q.time }}</div></td>
+                  <td style="padding:14px 12px;">{{ q.what }}</td>
+                  <td style="text-align:right;padding:14px 12px;">{{ q.reserve }}</td>
+                  <td style="text-align:right;padding:14px 12px;font-weight:600;">{{ q.confidence }}</td>
+                  <td style="padding:14px 12px;"><span style="font-size:12px;background:#f5f5f7;padding:4px 10px;border-radius:980px;">{{ q.flag }}</span></td>
+                  <td style="text-align:right;padding:14px 20px;"><button style="border:1px solid #d2d2d7;background:#fff;font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:980px;white-space:nowrap;" style-hover="background:#f0f0f2">{{ q.action }}</button></td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin:0 0 18px;">
+        <section style="background:#fff;border-radius:18px;padding:26px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin:0 0 6px;">
+            <h2 style="font-size:18px;font-weight:600;margin:0;">Outcome capture</h2>
+            <span style="font-size:12px;font-weight:600;color:#0071e3;">Feeds all intelligence</span>
+          </div>
+          <p style="font-size:14px;color:#6e6e73;margin:0 0 22px;">Every published outcome carries provenance. Estimates are never stored as facts.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;">
+            <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Result</label><select style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;background:#fff;"><option>Sold</option><option>Unsold — no bids</option><option>Unsold — below reserve</option><option>Cancelled by lender</option><option>Settled by borrower</option></select></div>
+            <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Hammer price</label><input type="text" value="{{ admin.sampleHammer }}" onChange="{{ noop }}" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+            <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Qualified bidders</label><input type="text" value="3" onChange="{{ noop }}" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+            <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Provenance</label><select style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;background:#fff;"><option>Sale certificate sighted</option><option>Registration record</option><option>Lender confirmed in writing</option><option>Our own concierge closure</option></select></div>
+            <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Verified by</label><input type="text" value="{{ admin.verifier }}" onChange="{{ noop }}" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+            <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Loan sanctioned?</label><select style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;background:#fff;"><option>Yes — partner lender</option><option>Yes — buyer's own bank</option><option>No</option></select></div>
+          </div>
+          <div style="display:flex;gap:9px;margin:22px 0 0;flex-wrap:wrap;">
+            <button style="border:none;background:#0071e3;color:#fff;font-size:13.5px;font-weight:500;padding:12px 20px;border-radius:980px;" style-hover="background:#0058b0">Save outcome</button>
+            <button style="border:1px solid #d2d2d7;background:#fff;font-size:13.5px;font-weight:500;padding:12px 20px;border-radius:980px;" style-hover="background:#f0f0f2">Save as unconfirmed</button>
+          </div>
+        </section>
+
+        <section style="background:#fff;border-radius:18px;padding:26px;">
+          <h2 style="font-size:18px;font-weight:600;margin:0 0 6px;">Today in {{ cityLabel }}</h2>
+          <p style="font-size:14px;color:#6e6e73;margin:0 0 20px;">The operational rhythm of one market.</p>
+          <sc-for list="{{ admin.rhythm }}" as="r" hint-placeholder-count="6">
+            <div style="display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid #f0f0f2;font-size:14.5px;">
+              <span>{{ r.k }}</span>
+              <span style="font-weight:600;white-space:nowrap;">{{ r.v }}</span>
+            </div>
+          </sc-for>
+        </section>
+      </div>
+
+      <section style="background:#fff;border-radius:18px;padding:26px;">
+        <h2 style="font-size:18px;font-weight:600;margin:0 0 6px;">Add a property manually</h2>
+        <p style="font-size:14px;color:#6e6e73;margin:0 0 22px;">For notices that arrive by email, newspaper or direct lender relationship rather than a crawled source.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Lender</label>
+            <select style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;background:#fff;">
+              <option>Public sector bank</option><option>Private bank</option><option>NBFC</option>
+              <option>Housing finance company</option><option>Co-operative society or bank</option>
+              <option>Small finance bank</option><option>Asset reconstruction company</option>
+              <option>Court / DRT / liquidator sale</option>
+            </select>
+          </div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Asset class</label>
+            <select style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;background:#fff;">
+              <option>Flats &amp; houses</option><option>Plots &amp; land</option><option>Shops</option>
+              <option>Offices</option><option>Warehouses</option><option>Cars, bikes &amp; trucks</option>
+              <option>Plant &amp; machinery</option>
+            </select>
+          </div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Locality</label><input type="text" placeholder="e.g. Velachery" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Pincode</label><input type="text" placeholder="600042" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Reserve price</label><input type="text" placeholder="₹58,40,000" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">EMD</label><input type="text" placeholder="₹5,84,000" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Possession</label>
+            <select style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;background:#fff;"><option>Physical</option><option>Symbolic</option><option>In lender's yard</option></select>
+          </div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Loan eligible</label>
+            <select style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;background:#fff;"><option>Yes — partner lenders will finance</option><option>No</option><option>Pending assessment</option></select>
+          </div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Auction date</label><input type="text" placeholder="27 Aug 2026" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+          <div><label style="font-size:12.5px;font-weight:600;display:block;margin:0 0 6px;">Source notice PDF</label><input type="text" placeholder="Attach file…" style="width:100%;border:1px solid #d2d2d7;border-radius:10px;padding:10px;font-size:13.5px;" /></div>
+        </div>
+        <div style="display:flex;gap:9px;margin:22px 0 0;flex-wrap:wrap;">
+          <button style="border:none;background:#0071e3;color:#fff;font-size:13.5px;font-weight:500;padding:12px 20px;border-radius:980px;" style-hover="background:#0058b0">Save &amp; publish</button>
+          <button style="border:1px solid #d2d2d7;background:#fff;font-size:13.5px;font-weight:500;padding:12px 20px;border-radius:980px;" style-hover="background:#f0f0f2">Save as draft</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;city&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;chennai&quot;,&quot;hyderabad&quot;,&quot;coimbatore&quot;,&quot;kerala&quot;,&quot;bengaluru&quot;],&quot;default&quot;:&quot;chennai&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const ADMIN = {
+  chennai: { verifier: 'R. Karthik · Chennai ops', review: '34', dupes: '11', published: '173', coverage: '94.2%', freshness: '3.1 h', dupeRate: '5.4%', outcomeRate: '61%', loanFlagged: '43%', sampleHammer: '₹34,80,000',
+    queue: [
+      { source: 'BAANKNET', time: '16 Aug 09:12', what: 'Flat · Kolathur · 780 sq ft', reserve: '₹36,20,000', confidence: '0.96', flag: 'Clean', action: 'Publish' },
+      { source: 'Canara Bank PDF', time: '16 Aug 08:47', what: 'Plot · Thiruporur · 2,400 sq ft', reserve: '₹32,20,000', confidence: '0.71', flag: 'Duplicate of CHN-24603?', action: 'Link & review' },
+      { source: 'Dinamalar notice OCR', time: '16 Aug 07:30', what: 'Industrial shed · Ambattur · area unclear', reserve: 'not extracted', confidence: '0.34', flag: 'Manual entry needed', action: 'Open editor' },
+      { source: 'IBBI liquidation feed', time: '16 Aug 06:58', what: 'CNC turning centre · Sriperumbudur', reserve: '₹24,50,000', confidence: '0.91', flag: 'Needs taxonomy', action: 'Classify' },
+      { source: 'TN Apex Co-op Bank', time: '16 Aug 06:20', what: 'Flat · Kolathur · 860 sq ft', reserve: '₹36,20,000', confidence: '0.94', flag: 'Clean', action: 'Publish' }
+    ],
+    rhythm: [
+      { k: 'Concierge cases open', v: '14 · 3 breaching SLA' }, { k: 'Site visits scheduled', v: '6 today, 9 tomorrow' },
+      { k: 'Loan leads to partner lenders', v: '11 sent · 4 sanctioned' }, { k: 'WhatsApp alerts queued', v: '8,412 · 06:30 send' },
+      { k: 'New Pro subscribers', v: '37 · churn 2' }, { k: 'Encumbrance pulls billed', v: '23' }
+    ] },
+  hyderabad: { verifier: 'S. Prasad · Hyderabad ops', review: '26', dupes: '8', published: '107', coverage: '91.6%', freshness: '3.8 h', dupeRate: '6.1%', outcomeRate: '54%', loanFlagged: '39%', sampleHammer: '₹24,10,000',
+    queue: [
+      { source: 'BAANKNET', time: '16 Aug 09:04', what: 'Flat · Nizampet · 1,120 sq ft', reserve: '₹44,60,000', confidence: '0.95', flag: 'Clean', action: 'Publish' },
+      { source: 'PNB portal', time: '16 Aug 08:22', what: 'Open plot · Medchal · 300 sq yd', reserve: '₹21,00,000', confidence: '0.74', flag: 'Possible duplicate', action: 'Link & review' },
+      { source: 'Eenadu notice OCR', time: '16 Aug 07:41', what: 'Shop · Kukatpally · area unclear', reserve: 'not extracted', confidence: '0.31', flag: 'Manual entry needed', action: 'Open editor' },
+      { source: 'Hinduja Housing portal', time: '16 Aug 07:02', what: 'Flat · Uppal · 690 sq ft', reserve: '₹19,40,000', confidence: '0.93', flag: 'Clean', action: 'Publish' },
+      { source: 'AP Mahesh Co-op Bank', time: '16 Aug 06:35', what: 'Shop · Saidabad · 420 sq ft', reserve: '₹18,60,000', confidence: '0.88', flag: 'Needs taxonomy', action: 'Classify' }
+    ],
+    rhythm: [
+      { k: 'Concierge cases open', v: '9 · 1 breaching SLA' }, { k: 'Site visits scheduled', v: '4 today, 6 tomorrow' },
+      { k: 'Loan leads to partner lenders', v: '8 sent · 3 sanctioned' }, { k: 'WhatsApp alerts queued', v: '5,204 · 06:30 send' },
+      { k: 'New Pro subscribers', v: '24 · churn 1' }, { k: 'Encumbrance pulls billed', v: '16' }
+    ] },
+  bengaluru: { verifier: 'M. Deepa · Bengaluru ops', review: '41', dupes: '15', published: '228', coverage: '93.4%', freshness: '2.8 h', dupeRate: '5.9%', outcomeRate: '64%', loanFlagged: '47%', sampleHammer: '₹41,60,000',
+    queue: [
+      { source: 'BAANKNET', time: '16 Aug 09:18', what: 'Flat · Yelahanka · 1,045 sq ft', reserve: '₹52,40,000', confidence: '0.97', flag: 'Clean', action: 'Publish' },
+      { source: 'Canara Bank PDF', time: '16 Aug 08:36', what: 'Site · Bidarahalli · 1,200 sq ft', reserve: '₹34,60,000', confidence: '0.72', flag: 'Possible duplicate', action: 'Link & review' },
+      { source: 'Deccan Herald OCR', time: '16 Aug 07:52', what: 'Industrial shed · Peenya · area unclear', reserve: 'not extracted', confidence: '0.36', flag: 'Manual entry needed', action: 'Open editor' },
+      { source: 'Jana SFB portal', time: '16 Aug 07:11', what: 'Land & building · Kengeri', reserve: '₹28,90,000', confidence: '0.90', flag: 'Clean', action: 'Publish' },
+      { source: 'Edelweiss ARC feed', time: '16 Aug 06:44', what: 'Commercial unit · Infantry Road', reserve: '₹1,14,00,000', confidence: '0.86', flag: 'Needs taxonomy', action: 'Classify' }
+    ],
+    rhythm: [
+      { k: 'Concierge cases open', v: '18 · 2 breaching SLA' }, { k: 'Site visits scheduled', v: '8 today, 11 tomorrow' },
+      { k: 'Loan leads to partner lenders', v: '16 sent · 6 sanctioned' }, { k: 'WhatsApp alerts queued', v: '11,860 · 06:30 send' },
+      { k: 'New Pro subscribers', v: '52 · churn 3' }, { k: 'Encumbrance pulls billed', v: '31' }
+    ] },
+  coimbatore: { verifier: 'K. Sundar · Coimbatore ops', review: '18', dupes: '5', published: '63', coverage: '89.8%', freshness: '4.2 h', dupeRate: '6.8%', outcomeRate: '49%', loanFlagged: '36%', sampleHammer: '₹19,80,000',
+    queue: [
+      { source: 'BAANKNET', time: '16 Aug 08:58', what: 'Flat · Saravanampatti · 1,010 sq ft', reserve: '₹31,40,000', confidence: '0.94', flag: 'Clean', action: 'Publish' },
+      { source: 'Canara Bank PDF', time: '16 Aug 08:12', what: 'House · Peelamedu · 1,650 sq ft', reserve: '₹41,80,000', confidence: '0.76', flag: 'Possible duplicate', action: 'Link & review' },
+      { source: 'Dinamalar notice OCR', time: '16 Aug 07:26', what: 'Shed · Sulur · area unclear', reserve: 'not extracted', confidence: '0.29', flag: 'Manual entry needed', action: 'Open editor' },
+      { source: 'Repco portal', time: '16 Aug 06:54', what: 'Flat · Singanallur · 980 sq ft', reserve: '₹26,40,000', confidence: '0.92', flag: 'Clean', action: 'Publish' },
+      { source: 'Tata Capital feed', time: '16 Aug 06:31', what: 'Knitting machines · Tirupur', reserve: '₹12,60,000', confidence: '0.87', flag: 'Needs taxonomy', action: 'Classify' }
+    ],
+    rhythm: [
+      { k: 'Concierge cases open', v: '6 · none breaching SLA' }, { k: 'Site visits scheduled', v: '3 today, 4 tomorrow' },
+      { k: 'Loan leads to partner lenders', v: '5 sent · 2 sanctioned' }, { k: 'WhatsApp alerts queued', v: '3,140 · 06:30 send' },
+      { k: 'New Pro subscribers', v: '14 · churn 1' }, { k: 'Encumbrance pulls billed', v: '9' }
+    ] },
+  kerala: { verifier: 'A. Menon · Kochi ops', review: '58', dupes: '22', published: '311', coverage: '88.4%', freshness: '4.6 h', dupeRate: '7.2%', outcomeRate: '51%', loanFlagged: '34%', sampleHammer: '₹52,40,000',
+    queue: [
+      { source: 'BAANKNET', time: '16 Aug 09:22', what: 'Flat · Aluva · 1,180 sq ft', reserve: '₹46,80,000', confidence: '0.95', flag: 'Clean', action: 'Publish' },
+      { source: 'South Indian Bank portal', time: '16 Aug 08:40', what: 'Land · Kunnathunad · 12 cents', reserve: '₹42,00,000', confidence: '0.73', flag: 'Possible duplicate', action: 'Link & review' },
+      { source: 'Malayala Manorama OCR', time: '16 Aug 07:58', what: 'Godown · Palakkad · area unclear', reserve: 'not extracted', confidence: '0.33', flag: 'Manual entry needed', action: 'Open editor' },
+      { source: 'Kerala State Co-op Bank', time: '16 Aug 07:14', what: 'Apartment · Elamkulam · 1,414 sq ft', reserve: '₹68,40,000', confidence: '0.93', flag: 'Clean', action: 'Publish' },
+      { source: 'IBBI liquidation feed', time: '16 Aug 06:40', what: 'Rubber processing plant · Kottayam', reserve: '₹86,00,000', confidence: '0.84', flag: 'Needs taxonomy', action: 'Classify' }
+    ],
+    rhythm: [
+      { k: 'Concierge cases open', v: '21 · 4 breaching SLA' }, { k: 'Site visits scheduled', v: '9 today, 12 tomorrow' },
+      { k: 'NRI desk calls booked', v: '7' }, { k: 'WhatsApp alerts queued', v: '14,220 · 06:30 send' },
+      { k: 'New Pro subscribers', v: '46 · churn 2' }, { k: 'Encumbrance pulls billed', v: '28' }
+    ] }
+};
+
+const LABELS = { chennai: 'Chennai', hyderabad: 'Hyderabad', coimbatore: 'Coimbatore', kerala: 'Kerala', bengaluru: 'Bengaluru' };
+
+const NAV = [
+  ['ingestion', 'Ingestion queue', 'Notices crawled, OCRed and awaiting review before publication.'],
+  ['editor', 'Property editor & verification', 'Correct extracted fields, attach photos, set risk flags, publish.'],
+  ['outcomes', 'Outcome capture', 'Sold, unsold, hammer price and provenance — the source of all intelligence.'],
+  ['loans', 'Loan eligibility rules', 'Partner lender criteria by asset class, city and possession status.'],
+  ['master', 'Master data', 'Lenders, branches, asset taxonomy, guideline values, vehicle masters.'],
+  ['localities', 'Localities & landmarks', 'Geo-master, polygons, landmark distances for every micro-market.'],
+  ['calendar', 'Auction calendar', 'EMD and inspection deadlines across every source.'],
+  ['alerts', 'Alerts & campaigns', 'WhatsApp, email and push templates, segments and send schedules.'],
+  ['subs', 'Subscriptions', 'Plans, coupons, entitlements, invoicing, churn and cohorts.'],
+  ['concierge', 'Concierge cases', 'Case queue, SLA timers, specialist assignment, deliverables.'],
+  ['partners', 'Partners & leads', 'Lenders, advocates, valuers; commission schedules and payouts.'],
+  ['analytics', 'Analytics', 'Coverage, freshness, funnel and revenue dashboards.'],
+  ['access', 'Access & audit log', 'Roles, immutable field history, DPDP consent and retention.']
+];
+
+class Component extends DCLogic {
+  state = { city: null, section: 'ingestion' };
+  renderVals() {
+    const cityKey = this.state.city ?? (this.props.city || 'chennai');
+    const admin = ADMIN[cityKey] || ADMIN.chennai;
+    const section = NAV.find(n => n[0] === this.state.section) || NAV[0];
+    return {
+      city: cityKey, cityLabel: LABELS[cityKey] || 'Chennai', admin: admin,
+      onCityChange: (e) => this.setState({ city: e.target.value }),
+      noop: () => {},
+      sectionTitle: section[1], sectionSubtitle: section[2],
+      navItems: NAV.map(n => ({
+        label: n[1],
+        bg: n[0] === section[0] ? '#f5f5f7' : 'transparent',
+        weight: n[0] === section[0] ? '600' : '400',
+        accent: n[0] === section[0] ? '#0071e3' : 'transparent',
+        select: () => this.setState({ section: n[0] })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

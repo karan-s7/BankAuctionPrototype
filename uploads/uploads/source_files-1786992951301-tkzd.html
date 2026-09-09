@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #efeae0; color: #17140f; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #8a3324; text-decoration: none; border-bottom: 1px solid rgba(138,51,36,0.35); }
+  a:hover { color: #17140f; border-bottom-color: #17140f; }
+  table { border-collapse: collapse; }
+</style>
+</helmet>
+<div style="background:#efeae0;font-family:'IBM Plex Sans',sans-serif;padding:0 0 120px;">
+
+  <div style="max-width:1180px;margin:0 auto;padding:0 40px;">
+
+    <header style="padding:56px 0 28px;border-bottom:3px double #17140f;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6b6153;">
+        <span>Market &amp; Product Research · Working Paper No. 01</span>
+        <span>Compiled 15 August 2026</span>
+      </div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:78px;line-height:1.02;letter-spacing:-0.025em;margin:26px 0 16px;max-width:15ch;">The Distressed Asset Opportunity</h1>
+      <p style="font-family:'Newsreader',serif;font-size:25px;line-height:1.4;font-style:italic;color:#3d362c;margin:20px 0 0;max-width:60ch;text-wrap:pretty;">India auctions tens of thousands of crores of seized property every year through portals that publish notices but hide outcomes. A market-intelligence layer — not another listings board — is the gap. This paper sizes it, benchmarks the incumbents, and models a five-city pilot for <strong style="font-style:normal;font-weight:500;">bankauctioniq.com</strong>.</p>
+      <div style="display:flex;gap:32px;flex-wrap:wrap;margin:30px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6b6153;">
+        <span>Audience: founding team · investors · senior hires</span>
+        <span>Pilot: Chennai · Hyderabad · Coimbatore · Kerala · Bengaluru</span>
+      </div>
+    </header>
+
+    <section style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:#efeae0;border-bottom:1px solid #d6cfc0;margin:0 0 4px;">
+      <div style="padding:26px 22px 24px;border-right:1px solid #d6cfc0;border-bottom:1px solid #d6cfc0;">
+        <div style="font-family:'Newsreader',serif;font-size:44px;line-height:1.05;letter-spacing:-0.02em;">₹20,873<span style="font-size:20px;color:#6b6153;"> cr</span></div>
+        <p style="font-size:13px;line-height:1.5;color:#3d362c;margin:10px 0 0;">Total value auctioned to date on BAANKNET, the 12 public sector banks' unified portal — a platform barely two years old.</p>
+      </div>
+      <div style="padding:26px 22px 24px;border-bottom:1px solid #d6cfc0;">
+        <div style="font-family:'Newsreader',serif;font-size:44px;line-height:1.05;letter-spacing:-0.02em;">2,15,709</div>
+        <p style="font-size:13px;line-height:1.5;color:#3d362c;margin:10px 0 0;">SARFAESI cases referred by banks in FY25, covering ₹1.03 lakh crore of secured debt. Each one is a potential auction lot.</p>
+      </div>
+      <div style="padding:26px 22px 24px;border-right:1px solid #d6cfc0;">
+        <div style="font-family:'Newsreader',serif;font-size:44px;line-height:1.05;letter-spacing:-0.02em;">14.7%</div>
+        <p style="font-size:13px;line-height:1.5;color:#3d362c;margin:10px 0 0;">Auction success rate under BAANKNET, up from 9% on the older portal. Meaning: roughly <em>six in seven</em> listed lots still fail to sell.</p>
+      </div>
+      <div style="padding:26px 22px 24px;">
+        <div style="font-family:'Newsreader',serif;font-size:44px;line-height:1.05;letter-spacing:-0.02em;">0</div>
+        <p style="font-size:13px;line-height:1.5;color:#3d362c;margin:10px 0 0;">Indian portals publishing hammer prices, sold/unsold history and re-auction records the way the UK's EIG has for 600,000+ lots.</p>
+      </div>
+    </section>
+
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#8a8172;margin:0 0 60px;">Sources: BAANKNET portal live counters (read 15 Aug 2026) · RBI, Trend &amp; Progress of Banking in India 2024-25 · Business Standard, 26 Jul 2025 · eigpropertyauctions.co.uk. Full source list at the end.</p>
+
+    <!-- ======================= 1. TAKEAWAYS ======================= -->
+    <section style="margin:0 0 84px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">01 · What we concluded</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 34px;max-width:24ch;">Five findings that shape the product</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:34px;">
+        <div style="border-top:2px solid #17140f;padding:18px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:22px;line-height:1.25;margin:0 0 10px;">The listings problem is solved. The <em>decision</em> problem is not.</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#3d362c;margin:0;text-wrap:pretty;">BAANKNET, bankeauctions.com, eauctionsindia.com and a long tail of aggregators already publish nearly every SARFAESI notice. None of them answer the buyer's actual questions: what is this asset worth, what did comparable lots actually fetch, will I get physical possession, and how many bidders will I face? That asymmetry is the business.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:18px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:22px;line-height:1.25;margin:0 0 10px;">Falling NPAs are not falling supply.</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#3d362c;margin:0;text-wrap:pretty;">Gross NPAs are at multi-decadal lows, yet SARFAESI referrals held flat at ~2.16 lakh cases in FY24 and FY25 and recovery <em>value</em> rose. A smaller, cleaner loan book with far more aggressive enforcement produces a stable — not shrinking — flow of auction lots.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:18px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:22px;line-height:1.25;margin:0 0 10px;">Nobody agrees how many lots exist in Chennai.</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#3d362c;margin:0;text-wrap:pretty;">Four aggregators report 466, 985, 1,562 and 3,476 Chennai listings simultaneously. Duplicate notices, stale lots and re-auctions are counted as new. Being the portal whose count is <em>correct and dated</em> is a defensible wedge, and the raw material for every intelligence product downstream.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:18px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:22px;line-height:1.25;margin:0 0 10px;">The international template is a subscription data business.</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#3d362c;margin:0;text-wrap:pretty;">Auction.com monetises transaction volume; the UK's EIG monetises <em>knowledge</em> — every lot past and future, price history, alerts — and has done so profitably for decades on a market of 38,000 lots a year. India lists more than twice that and has no equivalent.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:18px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:22px;line-height:1.25;margin:0 0 10px;">Revenue comes from the transaction, not the subscription.</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#3d362c;margin:0;text-wrap:pretty;">At a ₹299–499 retail price point, subscriptions cover roughly a third of our modelled Year-5 revenue. Concierge fees, loan-arrangement commissions and success fees on closed deals carry the rest — because one ₹45 lakh purchase is worth ~150 subscription-months.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 2. MARKET SIZE, 3-YEAR LOOKBACK ======================= -->
+    <section style="margin:0 0 84px;padding:0 0 0;border-top:3px double #17140f;">
+      <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:56px;padding:44px 0 0;">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">02 · Market size, FY23 → FY26</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 24px;max-width:26ch;">Three years of enforcement, digitised</h2>
+          <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0 0 18px;text-wrap:pretty;">The last three years contain the single most important structural change in this market: the migration of public sector bank auctions onto one portal. BAANKNET (formerly eBKray) became operational across most PSBs on <strong>1 July 2024</strong> and was formally launched in <strong>January 2025</strong>; all 12 public sector banks and the Insolvency and Bankruptcy Board of India now list on it.</p>
+          <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0 0 18px;text-wrap:pretty;">The effect on volume was immediate. Average annual successful bid value rose to <strong>₹15,731 crore</strong> for the twelve months to June 2025, against <strong>₹5,267 crore</strong> on the predecessor portal in the comparable prior period — roughly a threefold jump. The auction success rate improved from 9% to 14.7%. Photographs and video of lots, previously absent, are credited by bank executives with much of that gain.</p>
+          <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0;text-wrap:pretty;">Underneath the platform story, enforcement volume is remarkably stable. SARFAESI referrals were 2,16,571 cases (₹1.19 lakh crore) in FY24 and 2,15,709 cases (₹1.03 lakh crore) in FY25, with recoveries rising from ₹30,416 crore to ₹32,466 crore and the recovery rate improving from 25.4% to 31.5%. Asset quality, meanwhile, kept improving: gross NPAs of scheduled commercial banks fell to 2.3% in March 2025 and 2.15% in September 2025.</p>
+        </div>
+        <aside style="background:#e5dfd2;padding:26px 24px;align-self:start;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6153;margin:0 0 14px;">Read this carefully</div>
+          <p style="font-family:'Newsreader',serif;font-size:20px;line-height:1.4;margin:0 0 14px;">A 14.7% success rate means the market's real problem is unsold inventory, not scarce inventory.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">For banks, every failed auction is a re-notification, a fresh valuation and another quarter of carrying cost. For buyers, the same lot reappearing at a lower reserve is the single most profitable pattern in the market — and nobody publishes it. Both sides pay for the same dataset.</p>
+        </aside>
+      </div>
+
+      <!-- chart: PSB auction value -->
+      <div style="margin:46px 0 0;border-top:1px solid #d6cfc0;padding:28px 0 0;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin:0 0 22px;">
+          <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;margin:0;">Successful bid value, public sector bank property e-auctions</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">₹ crore, annualised 12-month periods to June</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;width:190px;flex:none;color:#3d362c;">e-BKray · to Jun 2024</span>
+            <div style="flex:1;background:#e5dfd2;height:34px;position:relative;">
+              <div style="width:33.5%;height:100%;background:#b9ae99;"></div>
+            </div>
+            <span style="font-family:'Newsreader',serif;font-size:22px;width:110px;flex:none;text-align:right;">5,267</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;width:190px;flex:none;color:#3d362c;">BAANKNET · to Jun 2025</span>
+            <div style="flex:1;background:#e5dfd2;height:34px;position:relative;">
+              <div style="width:100%;height:100%;background:#8a3324;"></div>
+            </div>
+            <span style="font-family:'Newsreader',serif;font-size:22px;width:110px;flex:none;text-align:right;">15,731</span>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8172;margin:16px 0 0;">Business Standard, 26 July 2025, citing Department of Financial Services data. Covers PSBs only — private banks, NBFCs, housing finance companies, ARCs and DRT sales are additional and largely unaggregated.</p>
+      </div>
+
+      <!-- chart: SARFAESI -->
+      <div style="margin:40px 0 0;border-top:1px solid #d6cfc0;padding:28px 0 0;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin:0 0 22px;">
+          <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;margin:0;">SARFAESI enforcement — the supply engine</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">RBI Trend &amp; Progress of Banking, Dec 2025</span>
+        </div>
+        <table style="width:100%;font-size:14px;">
+          <thead>
+            <tr style="border-bottom:1.5px solid #17140f;">
+              <th style="text-align:left;padding:0 0 10px;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">Metric</th>
+              <th style="text-align:right;padding:0 0 10px;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">FY24</th>
+              <th style="text-align:right;padding:0 0 10px;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">FY25</th>
+              <th style="text-align:right;padding:0 0 10px;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">Direction</th>
+            </tr>
+          </thead>
+          <tbody style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;">
+            <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 0;font-family:'IBM Plex Sans',sans-serif;">Cases referred under SARFAESI</td><td style="text-align:right;">2,16,571</td><td style="text-align:right;">2,15,709</td><td style="text-align:right;color:#6b6153;">flat</td></tr>
+            <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 0;font-family:'IBM Plex Sans',sans-serif;">Amount involved</td><td style="text-align:right;">₹1.19 lakh cr</td><td style="text-align:right;">₹1.03 lakh cr</td><td style="text-align:right;color:#8a3324;">−13%</td></tr>
+            <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 0;font-family:'IBM Plex Sans',sans-serif;">Amount recovered</td><td style="text-align:right;">₹30,416 cr</td><td style="text-align:right;">₹32,466 cr</td><td style="text-align:right;color:#2f6b4f;">+7%</td></tr>
+            <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 0;font-family:'IBM Plex Sans',sans-serif;">SARFAESI recovery rate</td><td style="text-align:right;">25.4%</td><td style="text-align:right;">31.5%</td><td style="text-align:right;color:#2f6b4f;">+610 bps</td></tr>
+            <tr><td style="padding:12px 0;font-family:'IBM Plex Sans',sans-serif;">SCB gross NPA ratio (Mar)</td><td style="text-align:right;">2.8%</td><td style="text-align:right;">2.3%</td><td style="text-align:right;color:#2f6b4f;">improving</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:14.5px;line-height:1.65;color:#3d362c;margin:20px 0 0;max-width:80ch;text-wrap:pretty;">Read the four rows together: banks are pursuing the same number of borrowers over a smaller pot of debt and extracting materially more from each. That is exactly the environment in which auction execution quality — pricing, marketing, bidder depth — becomes the binding constraint, and where an intelligence layer earns its fee from both sides.</p>
+      </div>
+    </section>
+
+    <!-- ======================= 3. FORECAST ======================= -->
+    <section style="margin:0 0 84px;border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">03 · The next five years</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 24px;max-width:26ch;">FY27 → FY31: our projection, and where it could be wrong</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;margin:0 0 40px;">
+        <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0;text-wrap:pretty;"><strong>No published forecast exists for Indian bank-auction volumes.</strong> What follows is our own model, built from three observable drivers, and it should be treated as an inference rather than a citation: (i) SARFAESI referral volume, flat for two years; (ii) bank credit growing 11–12% a year, which mechanically expands the future default base even at constant NPA ratios; (iii) auction success rate improving from 14.7% as photography, video and unified listing mature.</p>
+        <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0;text-wrap:pretty;">We model PSB auction value compounding at 12% a year off the ₹15,731 crore FY25 base, and assume the non-PSB market — private banks, NBFCs, housing finance companies, ARCs, DRT and IBC liquidation sales, all of which currently sit outside a single portal — is approximately equal in size again. That gives an all-India transacted market of roughly ₹31,000 crore in FY26 rising to about ₹55,000 crore by FY31.</p>
+      </div>
+
+      <div style="border-top:1px solid #d6cfc0;padding:28px 0 0;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin:0 0 22px;">
+          <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;margin:0;">Projected all-India bank-auction transacted value</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">₹ '000 crore · our model, not a published figure</span>
+        </div>
+        <div style="display:flex;align-items:flex-end;gap:18px;height:230px;padding:0 0 0;">
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+            <span style="font-family:'Newsreader',serif;font-size:20px;">31.0</span>
+            <div style="width:100%;height:56%;background:#b9ae99;"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">FY26e</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+            <span style="font-family:'Newsreader',serif;font-size:20px;">34.7</span>
+            <div style="width:100%;height:63%;background:#a89b84;"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">FY27p</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+            <span style="font-family:'Newsreader',serif;font-size:20px;">38.9</span>
+            <div style="width:100%;height:71%;background:#9a7d5f;"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">FY28p</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+            <span style="font-family:'Newsreader',serif;font-size:20px;">43.6</span>
+            <div style="width:100%;height:79%;background:#8f5f3f;"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">FY29p</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+            <span style="font-family:'Newsreader',serif;font-size:20px;">48.8</span>
+            <div style="width:100%;height:89%;background:#8a4128;"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">FY30p</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+            <span style="font-family:'Newsreader',serif;font-size:20px;">54.7</span>
+            <div style="width:100%;height:100%;background:#8a3324;"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">FY31p</span>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8172;margin:16px 0 0;">Method: PSB base ₹15,731 cr (FY25, DFS via Business Standard) × 12% CAGR × 2.0 for the non-PSB market. The 2.0 multiplier is the weakest link in this model — it is an estimate, not a measurement, and validating it with primary bank data is a first-90-days task.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:#d6cfc0;margin:40px 0 0;">
+        <div style="background:#e5dfd2;padding:24px 22px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6153;margin:0 0 10px;">Upside case</div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Unsecured retail and microfinance stress — which the RBI and S&amp;P have both flagged — converts into secured enforcement with a two-to-three-year lag. Success rates climbing toward 25% would lift transacted value faster than volume.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:24px 22px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6153;margin:0 0 10px;">Downside case</div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Auction listing changes borrower behaviour: UCO Bank's chief executive reports defaulters approaching the bank for one-time settlement <em>once listed</em>. Widespread pre-auction settlement shrinks completed-sale volume even as notice volume holds.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:24px 22px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6153;margin:0 0 10px;">Platform risk</div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">BAANKNET is state-backed, free, and already holds the PSB monopoly. If it publishes outcome data itself, our headline moat narrows to non-PSB coverage, analytics and service. Build for that world, not against it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 4. TOP 10 WEBSITES ======================= -->
+    <section style="margin:0 0 84px;border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">04 · The competitive set</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 20px;max-width:28ch;">Ten Indian portals, and the one thing each of them sells</h2>
+      <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0 0 32px;max-width:78ch;text-wrap:pretty;">Ranked by a blend of institutional weight and audience. Traffic figures are Similarweb estimates for October 2024 — the most recent public numbers we could verify — and should be read as order-of-magnitude, not precise. Where a site publishes its own counters we say so.</p>
+
+      <div style="display:flex;flex-direction:column;gap:0;border-top:1.5px solid #17140f;">
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">01</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">BAANKNET</h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">baanknet.com · PSB Alliance Pvt Ltd</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> the official monopoly. All 12 public sector banks plus IBBI list here; IBBI has mandated it for liquidation asset sales. Bank-verified titles, automated KYC, integrated payment gateway, photos and video.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Self-reported: 87,604 properties listed, 2,72,362 auctions conducted, ₹20,873 cr auctioned, 3,044 upcoming. Free to buyers.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">02</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">bankeauctions.com</h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">C1 India Pvt Ltd</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> the incumbent transaction engine. Positions itself as India's most trusted portal for foreclosed movable and immovable assets, having run auctions for almost every leading public and private bank.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Bank-branded landing pages (SBI, PNB and others), forward auctions and DRT sales. Revenue from banks, not buyers.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">03</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">eauctionsindia.com</h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">~660K visits/month (Oct 2024)</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> the biggest consumer audience in the category. Aggregates notices across SARFAESI, NPA, DRT and liquidation, sliced by city, bank and asset class — and it wins on SEO, not on tooling.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Claims 574 banks and 639 cities. Free, ad-monetised, including a gold-auction vertical. The traffic leader we must displace.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">04</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">Auction Tiger</h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">auctiontiger.in · e-Procurement Technologies</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> auction infrastructure at scale. Claims over 1 lakh auctions with ~45,000 fresh listings, spanning central and state government, bank and global sales — a procurement platform that also does NPAs.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Enterprise-first UX. Strong for institutional sellers, hostile to a first-time retail buyer.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">05</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">IBAPI</h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">ibapi.in · ~88K visits/month (Oct 2024)</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> the original government-backed PSB aggregator, now largely superseded by BAANKNET. Historically the reference point for "official" listings.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Instructive as a cautionary tale: official status without product quality did not produce audience.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">06</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">foreclosureindia.com</h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">Independent aggregator</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> multi-seller breadth — banks, liquidators, DRTs and financial institutions in one searchable database — plus daily email alerts on saved filters and a gold vertical.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Closest in intent to what we are building; still notice-level data with no outcomes.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">07</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">bankauctiondeals.com</h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">Independent aggregator</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> the deal-hunter framing — "20–60% below market" — plus a free WhatsApp channel for state-level alerts and per-lot source-notice traceability across 200+ lenders.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Claims 24,401+ live SARFAESI listings nationally. The WhatsApp habit is the one growth mechanic worth copying outright.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">08</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">findauction.in</h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">Independent aggregator</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> locality-level search with reserve price, EMD and inspection dates surfaced up front, and asset-class counts published per city — the most transparent taxonomy in the set.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Reports 3,476 Chennai lots — seven times ForeclosureIndia's 466 for the same city. Nobody reconciles.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">09</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">bankauctions.in <span style="font-size:14px;color:#6b6153;">/ 4Closure</span></h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">Independent aggregator, since 2019</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> an explicit "free, fair and transparent" positioning against paywalled and lead-selling competitors, organised around participating banks.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">Proof that "free and honest" alone does not fund a data business.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:22px;padding:22px 0;border-bottom:1px solid #ddd6c8;">
+          <div style="font-family:'Newsreader',serif;font-size:26px;color:#8a3324;">10</div>
+          <div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 4px;">samil.in <span style="font-size:14px;color:#6b6153;">+ city specialists</span></h3>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;">~191K visits/month (Oct 2024)</div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;"><strong>USP:</strong> movables done properly. Shriram Automall runs real bidding events for repossessed cars, bikes, trucks, tractors and construction equipment — the asset classes property portals treat as an afterthought. Alongside it, hyperlocal players like chennaibankauction.com aggregate 170+ organisations for one city.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;">The vehicle and machinery segment has a separate audience, cadence and trust model. Our multi-asset scope must respect that.</p>
+        </div>
+
+      </div>
+
+      <div style="background:#17140f;color:#efeae0;padding:32px 34px;margin:36px 0 0;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#b9ae99;margin:0 0 12px;">The pattern across all ten</div>
+        <p style="font-family:'Newsreader',serif;font-size:26px;line-height:1.4;margin:0;max-width:60ch;">Every incumbent monetises the <em>notice</em> — as traffic, as ad inventory, or as a fee from the bank. Not one monetises the <em>outcome</em>. No Indian portal will tell you what the last comparable lot actually sold for.</p>
+      </div>
+    </section>
+
+    <!-- ======================= 5. FEATURE COMPARISON ======================= -->
+    <section style="margin:0 0 84px;border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">05 · Feature benchmark</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 20px;max-width:28ch;">India versus the three best international platforms</h2>
+      <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0 0 32px;max-width:78ch;text-wrap:pretty;">We benchmarked against <strong>Auction.com</strong> (largest US marketplace for distressed, bank-owned and foreclosed property), <strong>Hubzu</strong> and <strong>Xome</strong> (Altisource and Mr. Cooper-lineage REO auction platforms), and the UK's <strong>Essential Information Group</strong> — the only one of the four that is a pure data subscription, and the closest analogue to what we intend to build.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:#d6cfc0;margin:0 0 36px;">
+        <div style="background:#e5dfd2;padding:24px 22px;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 8px;">Auction.com</h3>
+          <p style="font-size:13.5px;line-height:1.6;color:#2b251c;margin:0 0 10px;">7.5 million registered users. 12,000+ auctions a year. 5,33,000 properties sold worth $66 billion, with ~13,000 live at a time.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;"><strong>Model:</strong> scale marketplace. Buyer's premium and technology fees on transactions.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:24px 22px;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 8px;">Hubzu / Xome</h3>
+          <p style="font-size:13.5px;line-height:1.6;color:#2b251c;margin:0 0 10px;">Auto-bid and backup offers; per-listing property features, sales history and neighbourhood data; mobile apps with outbid and auction-ending push alerts; Xome's "First Look" exclusivity window.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;"><strong>Model:</strong> ~5% buyer's premium; Hubzu also charges sellers a $995 program fee, refunded on sale.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:24px 22px;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 8px;">EIG (UK)</h3>
+          <p style="font-size:13.5px;line-height:1.6;color:#2b251c;margin:0 0 10px;">Every lot coming to auction <em>and every lot offered in the past</em> — 850,000+ properties, 38,000 new lots a year worth over £4.7 billion, 530+ auctioneers covered, and Auction Insights built on 600,000+ sold lots.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#3d362c;margin:0;"><strong>Model:</strong> paid membership. Alerts, price history, comparables, due diligence. The proof that outcome data sells.</p>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%;min-width:840px;font-size:14px;">
+        <thead>
+          <tr style="border-bottom:1.5px solid #17140f;">
+            <th style="text-align:left;padding:0 12px 12px 0;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;width:29%;">Capability</th>
+            <th style="text-align:left;padding:0 12px 12px;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;">Indian portals today</th>
+            <th style="text-align:left;padding:0 12px 12px;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;">International best</th>
+            <th style="text-align:left;padding:0 0 12px 12px;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;width:16%;">Gap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:14px 12px 14px 0;font-weight:500;">Aggregated notice coverage</td><td style="padding:14px 12px;color:#3d362c;">Strong — 500+ lenders, 600+ cities claimed</td><td style="padding:14px 12px;color:#3d362c;">EIG: virtually every UK lot, 530+ auctioneers</td><td style="padding:14px 0 14px 12px;color:#2f6b4f;font-weight:500;">Parity</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:14px 12px 14px 0;font-weight:500;">Photos &amp; video of the lot</td><td style="padding:14px 12px;color:#3d362c;">New on BAANKNET; patchy elsewhere</td><td style="padding:14px 12px;color:#3d362c;">Standard, with interior sets and floor plans</td><td style="padding:14px 0 14px 12px;color:#a8791f;font-weight:500;">Narrowing</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:14px 12px 14px 0;font-weight:500;">Online bidding + KYC + payments</td><td style="padding:14px 12px;color:#3d362c;">BAANKNET has automated KYC and gateways</td><td style="padding:14px 12px;color:#3d362c;">Auto-bid, proxy bids, backup offers, escrow</td><td style="padding:14px 0 14px 12px;color:#a8791f;font-weight:500;">Moderate</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:14px 12px 14px 0;font-weight:500;">Alerts on saved searches</td><td style="padding:14px 12px;color:#3d362c;">Email daily digests; one WhatsApp channel</td><td style="padding:14px 12px;color:#3d362c;">Push, outbid, closing-soon, per-lot watchlists</td><td style="padding:14px 0 14px 12px;color:#a8791f;font-weight:500;">Moderate</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;background:#e5dfd2;"><td style="padding:14px 12px 14px 0;font-weight:500;">Hammer price / sold results history</td><td style="padding:14px 12px;color:#8a3324;font-weight:500;">Absent</td><td style="padding:14px 12px;color:#3d362c;">EIG: 600,000+ sold lots, searchable</td><td style="padding:14px 0 14px 12px;color:#8a3324;font-weight:600;">Wide open</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;background:#e5dfd2;"><td style="padding:14px 12px 14px 0;font-weight:500;">Comparables &amp; valuation view</td><td style="padding:14px 12px;color:#8a3324;font-weight:500;">Absent — reserve price only</td><td style="padding:14px 12px;color:#3d362c;">Hubzu neighbourhood data; EIG comparables</td><td style="padding:14px 0 14px 12px;color:#8a3324;font-weight:600;">Wide open</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;background:#e5dfd2;"><td style="padding:14px 12px 14px 0;font-weight:500;">Re-auction / relisting history</td><td style="padding:14px 12px;color:#8a3324;font-weight:500;">Absent — relists look like new lots</td><td style="padding:14px 12px;color:#3d362c;">EIG shows prior offerings of the same lot</td><td style="padding:14px 0 14px 12px;color:#8a3324;font-weight:600;">Wide open</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;background:#e5dfd2;"><td style="padding:14px 12px 14px 0;font-weight:500;">Legal pack / title diligence in-product</td><td style="padding:14px 12px;color:#8a3324;font-weight:500;">Buyer's own problem; caveat emptor</td><td style="padding:14px 12px;color:#3d362c;">UK legal packs are standard pre-bid</td><td style="padding:14px 0 14px 12px;color:#8a3324;font-weight:600;">Wide open</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;background:#e5dfd2;"><td style="padding:14px 12px 14px 0;font-weight:500;">Possession status clarity</td><td style="padding:14px 12px;color:#8a3324;font-weight:500;">Symbolic vs physical rarely stated plainly</td><td style="padding:14px 12px;color:#3d362c;">Occupied vs vacant flagged at listing level</td><td style="padding:14px 0 14px 12px;color:#8a3324;font-weight:600;">Wide open</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:14px 12px 14px 0;font-weight:500;">Financing at point of bid</td><td style="padding:14px 12px;color:#3d362c;">Lender ads; no integrated pre-approval</td><td style="padding:14px 12px;color:#3d362c;">Partner finance embedded in the flow</td><td style="padding:14px 0 14px 12px;color:#8a3324;font-weight:600;">Wide open</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:14px 12px 14px 0;font-weight:500;">Movables (cars, trucks, machinery)</td><td style="padding:14px 12px;color:#3d362c;">Strong in silos — Samil, gold verticals</td><td style="padding:14px 12px;color:#3d362c;">Separate specialists internationally too</td><td style="padding:14px 0 14px 12px;color:#2f6b4f;font-weight:500;">Parity</td></tr>
+          <tr><td style="padding:14px 12px 14px 0;font-weight:500;">Paid data subscription / API</td><td style="padding:14px 12px;color:#8a3324;font-weight:500;">Effectively none</td><td style="padding:14px 12px;color:#3d362c;">EIG membership is the category standard</td><td style="padding:14px 0 14px 12px;color:#8a3324;font-weight:600;">Wide open</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8172;margin:16px 0 0;">Highlighted rows are where we intend to compete. "Absent" means we could not find the capability on the portals reviewed as of August 2026 — not that it provably does not exist anywhere.</p>
+    </section>
+
+    <!-- ======================= 6. PILOT FINANCIALS ======================= -->
+    <section style="margin:0 0 84px;border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">06 · Five-city pilot</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 20px;max-width:26ch;">The financial opportunity, Year 1 to Year 5</h2>
+      <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0 0 30px;max-width:78ch;text-wrap:pretty;">Chennai, Hyderabad, Coimbatore, Kerala and Bengaluru are an unusually good pilot footprint: the south-based public sector lenders most active in SARFAESI enforcement — Canara, Indian Bank, Indian Overseas Bank, Union Bank — concentrate their notices here, and Chennai alone shows between 466 and 3,476 live lots depending on which aggregator you believe. We estimate the five geographies at <strong>18–22% of national auction flow</strong>, or roughly <strong>₹6,200–6,800 crore of transacted value in FY27</strong> rising to about <strong>₹11,000 crore by FY31</strong>.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:#d6cfc0;margin:0 0 34px;">
+        <div style="background:#e5dfd2;padding:22px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6153;margin:0 0 8px;">TAM · India</div>
+          <div style="font-family:'Newsreader',serif;font-size:30px;line-height:1;">₹700–1,500 cr</div>
+          <p style="font-size:13px;line-height:1.55;color:#3d362c;margin:8px 0 0;">Annual monetisable services pool: 1.5–3% of ~₹31,000–55,000 cr transacted value (subscriptions, fees, commissions, data).</p>
+        </div>
+        <div style="background:#e5dfd2;padding:22px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6153;margin:0 0 8px;">SAM · five geographies</div>
+          <div style="font-family:'Newsreader',serif;font-size:30px;line-height:1;">₹140–300 cr</div>
+          <p style="font-size:13px;line-height:1.55;color:#3d362c;margin:8px 0 0;">The same pool restricted to the pilot footprint at ~20% of national flow.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:22px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6153;margin:0 0 8px;">SOM · Year 5 target</div>
+          <div style="font-family:'Newsreader',serif;font-size:30px;line-height:1;">₹51.5 cr</div>
+          <p style="font-size:13px;line-height:1.55;color:#3d362c;margin:8px 0 0;">17–35% of SAM. This is a category-leadership number and should be argued with, not assumed.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:22px 20px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6153;margin:0 0 8px;">Influenced GMV · Year 5</div>
+          <div style="font-family:'Newsreader',serif;font-size:30px;line-height:1;">≈₹1,080 cr</div>
+          <p style="font-size:13px;line-height:1.55;color:#3d362c;margin:8px 0 0;">2,400 closed transactions at a ₹45 lakh average ticket — about 10% of pilot-geography flow.</p>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%;min-width:880px;font-size:14px;">
+        <thead>
+          <tr style="border-bottom:1.5px solid #17140f;">
+            <th style="text-align:left;padding:0 12px 12px 0;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;">Driver</th>
+            <th style="text-align:right;padding:0 12px 12px;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;">Y1 · FY27</th>
+            <th style="text-align:right;padding:0 12px 12px;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;">Y2</th>
+            <th style="text-align:right;padding:0 12px 12px;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;">Y3</th>
+            <th style="text-align:right;padding:0 12px 12px;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;">Y4</th>
+            <th style="text-align:right;padding:0 0 12px 12px;font-weight:600;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;">Y5 · FY31</th>
+          </tr>
+        </thead>
+        <tbody style="font-family:'IBM Plex Mono',monospace;font-size:13px;">
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 12px 12px 0;font-family:'IBM Plex Sans',sans-serif;">Registered free users</td><td style="text-align:right;padding:12px;">60,000</td><td style="text-align:right;padding:12px;">1,90,000</td><td style="text-align:right;padding:12px;">4,50,000</td><td style="text-align:right;padding:12px;">8,00,000</td><td style="text-align:right;padding:12px 0 12px 12px;">12,50,000</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 12px 12px 0;font-family:'IBM Plex Sans',sans-serif;">Paying retail subscribers (avg active)</td><td style="text-align:right;padding:12px;">1,800</td><td style="text-align:right;padding:12px;">6,500</td><td style="text-align:right;padding:12px;">17,000</td><td style="text-align:right;padding:12px;">33,000</td><td style="text-align:right;padding:12px 0 12px 12px;">55,000</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 12px 12px 0;font-family:'IBM Plex Sans',sans-serif;">Pro / investor seats (₹1,999 pm)</td><td style="text-align:right;padding:12px;">40</td><td style="text-align:right;padding:12px;">140</td><td style="text-align:right;padding:12px;">320</td><td style="text-align:right;padding:12px;">560</td><td style="text-align:right;padding:12px 0 12px 12px;">900</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 12px 12px 0;font-family:'IBM Plex Sans',sans-serif;">Concierge engagements</td><td style="text-align:right;padding:12px;">90</td><td style="text-align:right;padding:12px;">320</td><td style="text-align:right;padding:12px;">850</td><td style="text-align:right;padding:12px;">1,700</td><td style="text-align:right;padding:12px 0 12px 12px;">2,900</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 12px 12px 0;font-family:'IBM Plex Sans',sans-serif;">Closed transactions influenced</td><td style="text-align:right;padding:12px;">55</td><td style="text-align:right;padding:12px;">210</td><td style="text-align:right;padding:12px;">620</td><td style="text-align:right;padding:12px;">1,350</td><td style="text-align:right;padding:12px 0 12px 12px;">2,400</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 12px 12px 0;font-family:'IBM Plex Sans',sans-serif;">Institutional data clients</td><td style="text-align:right;padding:12px;">2</td><td style="text-align:right;padding:12px;">6</td><td style="text-align:right;padding:12px;">14</td><td style="text-align:right;padding:12px;">26</td><td style="text-align:right;padding:12px 0 12px 12px;">40</td></tr>
+          <tr style="border-bottom:1.5px solid #17140f;background:#e5dfd2;"><td style="padding:14px 12px 14px 0;font-family:'IBM Plex Sans',sans-serif;font-weight:600;">Revenue (₹ crore)</td><td style="text-align:right;padding:14px 12px;font-weight:600;">1.4</td><td style="text-align:right;padding:14px 12px;font-weight:600;">4.7</td><td style="text-align:right;padding:14px 12px;font-weight:600;">12.6</td><td style="text-align:right;padding:14px 12px;font-weight:600;">26.8</td><td style="text-align:right;padding:14px 0 14px 12px;font-weight:600;">51.5</td></tr>
+          <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:12px 12px 12px 0;font-family:'IBM Plex Sans',sans-serif;">Gross margin</td><td style="text-align:right;padding:12px;">62%</td><td style="text-align:right;padding:12px;">66%</td><td style="text-align:right;padding:12px;">69%</td><td style="text-align:right;padding:12px;">72%</td><td style="text-align:right;padding:12px 0 12px 12px;">74%</td></tr>
+          <tr><td style="padding:12px 12px 12px 0;font-family:'IBM Plex Sans',sans-serif;">EBITDA (₹ crore)</td><td style="text-align:right;padding:12px;color:#8a3324;">(2.6)</td><td style="text-align:right;padding:12px;color:#8a3324;">(3.4)</td><td style="text-align:right;padding:12px;color:#8a3324;">(1.1)</td><td style="text-align:right;padding:12px;color:#2f6b4f;">4.2</td><td style="text-align:right;padding:12px 0 12px 12px;color:#2f6b4f;">13.9</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div style="display:flex;align-items:flex-end;gap:22px;height:210px;margin:44px 0 0;border-top:1px solid #d6cfc0;padding:34px 0 0;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+          <span style="font-family:'Newsreader',serif;font-size:20px;">₹1.4 cr</span>
+          <div style="width:100%;height:14%;min-height:12px;background:#b9ae99;"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">Year 1</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+          <span style="font-family:'Newsreader',serif;font-size:20px;">₹4.7 cr</span>
+          <div style="width:100%;height:26%;min-height:12px;background:#a89b84;"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">Year 2</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+          <span style="font-family:'Newsreader',serif;font-size:20px;">₹12.6 cr</span>
+          <div style="width:100%;height:44%;background:#9a7d5f;"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">Year 3</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+          <span style="font-family:'Newsreader',serif;font-size:20px;">₹26.8 cr</span>
+          <div style="width:100%;height:70%;background:#8f5f3f;"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">Year 4</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;">
+          <span style="font-family:'Newsreader',serif;font-size:20px;">₹51.5 cr</span>
+          <div style="width:100%;height:100%;background:#8a3324;"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6153;">Year 5</span>
+        </div>
+      </div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8172;margin:14px 0 0;">Bar heights use a compressed scale so the early years stay legible — read the printed values, not the bar ratios.</p>
+
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;margin:44px 0 0;">
+        <div>
+          <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 16px;">Where Year-5 revenue comes from</h3>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:13.5px;width:200px;flex:none;">Retail subscriptions</span><div style="flex:1;background:#e5dfd2;height:22px;"><div style="width:34%;height:100%;background:#8a3324;"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;width:74px;text-align:right;">₹17.6 cr</span></div>
+            <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:13.5px;width:200px;flex:none;">Concierge fees</span><div style="flex:1;background:#e5dfd2;height:22px;"><div style="width:25%;height:100%;background:#8f5f3f;"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;width:74px;text-align:right;">₹13.1 cr</span></div>
+            <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:13.5px;width:200px;flex:none;">Success fees on closures</span><div style="flex:1;background:#e5dfd2;height:22px;"><div style="width:16%;height:100%;background:#9a7d5f;"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;width:74px;text-align:right;">₹8.4 cr</span></div>
+            <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:13.5px;width:200px;flex:none;">Loan arrangement commission</span><div style="flex:1;background:#e5dfd2;height:22px;"><div style="width:9%;height:100%;background:#a89b84;"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;width:74px;text-align:right;">₹4.9 cr</span></div>
+            <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:13.5px;width:200px;flex:none;">Institutional data &amp; API</span><div style="flex:1;background:#e5dfd2;height:22px;"><div style="width:8%;height:100%;background:#b9ae99;"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;width:74px;text-align:right;">₹4.2 cr</span></div>
+            <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:13.5px;width:200px;flex:none;">Pro seats, reports, listings ads</span><div style="flex:1;background:#e5dfd2;height:22px;"><div style="width:6%;height:100%;background:#c8bfab;"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;width:74px;text-align:right;">₹3.3 cr</span></div>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#3d362c;margin:20px 0 0;">Two thirds of Year-5 revenue is transaction-linked. The subscription is the acquisition and retention product; the money is in what happens after someone decides to bid.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 16px;">Unit assumptions</h3>
+          <table style="width:100%;font-size:13.5px;">
+            <tbody style="font-family:'IBM Plex Mono',monospace;font-size:13px;">
+              <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:9px 0;font-family:'IBM Plex Sans',sans-serif;">Retail plan</td><td style="text-align:right;">₹399/mo · ₹3,200 blended annual ARPU</td></tr>
+              <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:9px 0;font-family:'IBM Plex Sans',sans-serif;">Free → paid conversion</td><td style="text-align:right;">3.0% → 4.4% by Y5</td></tr>
+              <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:9px 0;font-family:'IBM Plex Sans',sans-serif;">Concierge fee</td><td style="text-align:right;">₹25,000–65,000 · ₹45,000 avg</td></tr>
+              <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:9px 0;font-family:'IBM Plex Sans',sans-serif;">Success fee</td><td style="text-align:right;">0.75% of hammer price</td></tr>
+              <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:9px 0;font-family:'IBM Plex Sans',sans-serif;">Average ticket</td><td style="text-align:right;">₹45 lakh (immovable)</td></tr>
+              <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:9px 0;font-family:'IBM Plex Sans',sans-serif;">Loan commission</td><td style="text-align:right;">0.75% on ~₹30 lakh, 55% attach</td></tr>
+              <tr style="border-bottom:1px solid #ddd6c8;"><td style="padding:9px 0;font-family:'IBM Plex Sans',sans-serif;">Data licence</td><td style="text-align:right;">₹6–25 lakh per client per year</td></tr>
+              <tr><td style="padding:9px 0;font-family:'IBM Plex Sans',sans-serif;">CAC blended</td><td style="text-align:right;">₹180 free · ₹2,400 paid</td></tr>
+            </tbody>
+          </table>
+          <div style="background:#e5dfd2;padding:18px 20px;margin:22px 0 0;">
+            <p style="font-size:13.5px;line-height:1.6;color:#2b251c;margin:0;"><strong>Sensitivity that matters most:</strong> concierge conversion. At 3% of paid subscribers rather than our modelled 5.3%, Year-5 revenue falls to ₹38 cr and EBITDA to ₹6.8 cr. At 8% it reaches ₹68 cr. Everything else moves the model less than this one number.</p>
+          </div>
+        </div>
+      </div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8172;margin:26px 0 0;">All figures in this section are our own construction from the market data above plus stated assumptions. They are a plan, not a finding, and the honest confidence interval on Year 5 is roughly ₹35–70 crore.</p>
+    </section>
+
+    <!-- ======================= 7. INTELLIGENCE MOAT ======================= -->
+    <section style="margin:0 0 84px;border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">07 · The moat</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 20px;max-width:28ch;">Ten market-intelligence products nobody in India sells today</h2>
+      <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0 0 34px;max-width:78ch;text-wrap:pretty;">Each of these is buildable from public material — sale notices, auction results, registration and guideline values, court listings, satellite and street imagery, our own bidder telemetry — and each answers a question a buyer currently cannot answer at any price. Ordered by how much we expect people to pay.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;background:#d6cfc0;">
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">01 · Flagship</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">True Clearing Price index</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Hammer price against reserve for every completed auction, by micro-market and asset class, with sold/unsold outcome. This is EIG's 600,000-lot dataset, built for India. It is the single most valuable number in the market and no Indian portal publishes it.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">02 · Flagship</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">Re-auction Risk &amp; Discount Ladder</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">With a 14.7% success rate, most lots come back. We track every relisting of the same asset and show how far each bank has historically cut its reserve on the second, third and fourth attempt — turning "should I bid now or wait?" into an evidenced decision.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">03</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">Possession Reality Score</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Symbolic versus physical possession, occupancy, pending stay orders, society and utility arrears, tenancy — scored per lot, with historical time-to-possession by district and lender. The risk buyers most fear and understand least.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">04 · You asked for this</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">Auction heat maps</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Locality-level maps layering live lot density, average discount to guideline value, clearing-rate and bidder competition — filtered to each user's preferred areas and price band. The most shareable artefact we can build, and a strong free-tier hook with the depth paywalled.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">05</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">Bidder Competition Forecast</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Expected number of qualified bidders and the likely winning band for a given lot, modelled from our own watchlist and EMD telemetry plus historical comparables. Nobody else has the demand-side data to compute this.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">06</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">Lender Behaviour Profiles</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">How each bank actually behaves: reserve aggressiveness versus market, willingness to accept the sole bid, cancellation frequency, sale-certificate turnaround, litigation rate. Useful to buyers; extremely saleable back to the banks themselves as a benchmark.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">07</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">90-Day Supply Pipeline</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Section 13(2) demand notices and possession notices published <em>before</em> sale notices, mapped to locality — a forward view of what is likely to come to auction next quarter. The professional investor's reason to renew.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">08</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">Exit &amp; Yield Model</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Per-lot resale liquidity, expected days-on-market, achievable rent and net yield after stamp duty, arrears and refurbishment — so the buy decision includes the exit, not just the entry discount.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">09</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">Movables intelligence</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">For cars, bikes, commercial trucks and plant: reserve against fair market value by make, model, year and hours run; fleet-age and idle-time signals; district-level resale spreads. A neglected, high-frequency, high-repeat segment.</p>
+        </div>
+        <div style="background:#e5dfd2;padding:26px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a3324;margin:0 0 8px;">10 · Distribution, not data</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 8px;">WhatsApp intelligence briefs</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">A daily or weekly brief on the user's chosen localities and asset classes, delivered where Indian buyers already are, plus a curated mailing list. One competitor runs a WhatsApp alerts channel; none pairs it with genuine analysis. This is our cheapest retention lever.</p>
+        </div>
+      </div>
+
+      <div style="background:#17140f;color:#efeae0;padding:32px 34px;margin:34px 0 0;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#b9ae99;margin:0 0 12px;">The compounding argument</div>
+        <p style="font-family:'Newsreader',serif;font-size:24px;line-height:1.45;margin:0 0 14px;max-width:64ch;">Items 01, 02, 05 and 07 can only be built by someone who has been watching every auction, every day, for years. They cannot be bought, and a competitor starting in 2029 cannot backfill them.</p>
+        <p style="font-size:14px;line-height:1.65;color:#c8bfab;margin:0;max-width:78ch;">Two caveats we should state plainly to any investor. First, auction <em>results</em> are not uniformly published in India — a meaningful share of our clearing-price dataset will have to be assembled from sale certificates, registration records, bank confirmations and our own concierge closures, which is operationally expensive. Second, publishing borrower-linked information demands real care on data protection under the DPDP Act; the product should surface asset facts, never borrower profiles.</p>
+      </div>
+    </section>
+
+    <!-- ======================= 8. CONCIERGE + FEATURES ======================= -->
+    <section style="margin:0 0 84px;border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">08 · Product</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 34px;max-width:26ch;">Five features that win subscribers, and the concierge that monetises them</h2>
+
+      <div style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;">
+        <div>
+          <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 20px;">Top 5 features — free hook, paid depth</h3>
+          <div style="display:flex;flex-direction:column;gap:22px;">
+            <div style="border-left:3px solid #8a3324;padding:2px 0 2px 18px;">
+              <h4 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 6px;">1. One verified feed with a real countdown</h4>
+              <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0 0 6px;">Every lot across banks, NBFCs, ARCs, DRT and liquidation — deduplicated, dated, with EMD deadline, inspection window and source notice attached. <strong>Free:</strong> search and browse. <strong>Paid:</strong> unlimited saved searches, instant WhatsApp and push alerts, early access window.</p>
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;margin:0;">Why it wins: aggregators currently disagree with each other by 7× on a single city.</p>
+            </div>
+            <div style="border-left:3px solid #8a3324;padding:2px 0 2px 18px;">
+              <h4 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 6px;">2. Fair-Value Verdict on every lot</h4>
+              <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0 0 6px;">Reserve price against guideline value, portal asking prices and actual clearing prices for comparable lots, expressed as one honest verdict: underpriced, fair, or optimistic. <strong>Free:</strong> the verdict badge. <strong>Paid:</strong> the comparables, the clearing band, the workings.</p>
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;margin:0;">Why it wins: "20–60% below market" is an unverified claim on every competitor site.</p>
+            </div>
+            <div style="border-left:3px solid #8a3324;padding:2px 0 2px 18px;">
+              <h4 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 6px;">3. Risk &amp; Possession report</h4>
+              <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0 0 6px;">A traffic-light on possession type, litigation, arrears and title clarity, with plain-language explanation of what each flag means for a buyer. <strong>Free:</strong> the light. <strong>Paid:</strong> the full report and the encumbrance pull.</p>
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;margin:0;">Why it wins: it addresses the exact fear that keeps first-time buyers out of auctions entirely.</p>
+            </div>
+            <div style="border-left:3px solid #8a3324;padding:2px 0 2px 18px;">
+              <h4 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 6px;">4. Heat maps and the Discount Index</h4>
+              <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0 0 6px;">Where the deals actually are this month, by locality and asset class, with discount, clearing-rate and competition layers. <strong>Free:</strong> current lot density. <strong>Paid:</strong> discount, clearing and competition layers plus twelve months of history.</p>
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;margin:0;">Why it wins: it is the most shareable object in the product and drives organic acquisition.</p>
+            </div>
+            <div style="border-left:3px solid #8a3324;padding:2px 0 2px 18px;">
+              <h4 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 6px;">5. Bid-to-possession workflow</h4>
+              <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0 0 6px;">EMD calculator and deadline tracker, document checklist, pre-approved auction finance from partner lenders, then concierge handoff and a possession tracker after the hammer falls. <strong>Free:</strong> calculator and checklist. <strong>Paid:</strong> the assisted path.</p>
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8172;margin:0;">Why it wins: it converts intent into the revenue lines that actually pay for the company.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 20px;">Concierge, productised</h3>
+          <div style="background:#e5dfd2;padding:24px 22px;margin:0 0 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8a3324;margin:0 0 8px;">Tier 1 · Diligence · ₹25,000</div>
+            <p style="font-size:13.5px;line-height:1.6;color:#2b251c;margin:0;">Title and encumbrance verification, a physical site visit with dated photos and video, occupancy check, arrears and litigation search, written go/no-go with a recommended maximum bid.</p>
+          </div>
+          <div style="background:#e5dfd2;padding:24px 22px;margin:0 0 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8a3324;margin:0 0 8px;">Tier 2 · Represented bid · ₹45,000</div>
+            <p style="font-size:13.5px;line-height:1.6;color:#2b251c;margin:0;">Everything in Tier 1, plus EMD and demand-draft handling, KYC and portal registration, a bidding strategy with walk-away price, and a named specialist on the phone through the auction window.</p>
+          </div>
+          <div style="background:#e5dfd2;padding:24px 22px;margin:0 0 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8a3324;margin:0 0 8px;">Tier 3 · Keys in hand · ₹65,000 + 0.75%</div>
+            <p style="font-size:13.5px;line-height:1.6;color:#2b251c;margin:0;">End to end: loan tie-up, sale certificate follow-through, registration and mutation, physical possession including eviction support, then optional resale or rent-out. Success fee only on a completed purchase.</p>
+          </div>
+          <div style="border-top:1px solid #d6cfc0;padding:20px 0 0;">
+            <p style="font-size:14px;line-height:1.65;color:#3d362c;margin:0 0 14px;">Concierge is also our data acquisition engine. Every engagement produces a verified valuation, a confirmed possession outcome and — critically — a hammer price. The service pays for the dataset that makes the subscription worth buying.</p>
+            <p style="font-size:14px;line-height:1.65;color:#3d362c;margin:0;"><strong>Operational caution:</strong> concierge is people-intensive and does not scale like software. Cap it deliberately, price it to a 55–60% gross margin, and staff it city by city rather than promising national coverage in Year 1.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 9. ADMIN MODULE ======================= -->
+    <section style="margin:0 0 84px;border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">09 · Admin module</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 20px;max-width:30ch;">What the back office must do on day one</h2>
+      <p style="font-size:16px;line-height:1.7;color:#2b251c;margin:0 0 32px;max-width:78ch;text-wrap:pretty;">The admin module is not an afterthought — it is where the product's only real asset, data quality, is manufactured. Specified here at the level a design and engineering team can build from.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:28px;">
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Ingestion &amp; notice pipeline</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Scheduled crawls per source, PDF and newspaper-notice OCR, field extraction into a review queue, duplicate and relisting detection against existing lots, source-notice attachment for traceability, ingest health dashboard with per-source failure alerts.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Master data</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Lender, branch and authorised-officer registers; ARC, liquidator and DRT registers; asset taxonomy across immovable and movable classes; locality and pincode geo-master with map polygons; guideline and circle-value tables by state; vehicle make-model-variant master.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Lot editor &amp; verification</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Single-lot workspace: correct extracted fields, tag possession type, upload site photos and video, attach encumbrance certificates, set risk flags, assign a verification level and verifier, then publish with a full change history.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Outcome capture</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">The most important screen in the system: record sold or unsold, hammer price, bidder count, cancellation reason and re-auction linkage, with a provenance field for how the outcome was confirmed. This is what the entire intelligence layer is built on.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Auction calendar &amp; alerts</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Calendar across all sources; EMD and inspection deadline management; alert template library for WhatsApp, email and push; segment builder; send scheduling with throttles; deliverability and open reporting.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Subscriptions &amp; entitlements</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Plan and price-book management, coupons and trials, per-feature entitlement flags, payment and refund ledger, GST invoicing, dunning, churn and cohort reporting.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Concierge case management</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Case queue with SLA timers, specialist assignment by city, document vault, site-visit scheduling, deliverable templates, fee and success-fee tracking, and closure capture that feeds the outcome database.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Partner &amp; lead desk</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Onboarding for lenders, advocates, valuers and surveyors; commission schedules; lead routing rules; conversion and payout reconciliation per partner.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Content, SEO &amp; heat-map config</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">City and locality landing-page templates, editorial and FAQ management, redirect rules, plus configuration of heat-map layers, bands and refresh cadence without a deploy.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Access, audit &amp; compliance</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Role-based access for admin, data operations, verifier, concierge, finance and partner roles; immutable audit log on every published field; DPDP consent and data-retention controls; borrower-data redaction rules enforced at publish time.</p>
+        </div>
+        <div style="border-top:2px solid #17140f;padding:16px 0 0;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0 0 10px;">Analytics &amp; data quality</h3>
+          <p style="font-size:14px;line-height:1.6;color:#2b251c;margin:0;">Coverage by city and lender against expected notice volume, freshness and staleness monitors, duplicate rate, outcome-capture rate, funnel and revenue dashboards, and an API key manager for institutional clients.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 10. RISKS ======================= -->
+    <section style="margin:0 0 84px;border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">10 · Honest risks</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 30px;max-width:26ch;">What would change our mind</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;">
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:19px;margin:0 0 8px;">Outcome data may be harder to get than modelled</h3>
+          <p style="font-size:14px;line-height:1.6;color:#3d362c;margin:0;">Our entire moat assumes we can reliably observe hammer prices. If banks and portals do not disclose them and registration data lags by months, the flagship product degrades into an estimate. Test this in Chennai within 90 days before committing capital to five cities.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:19px;margin:0 0 8px;">A free state platform is a hard competitor</h3>
+          <p style="font-size:14px;line-height:1.6;color:#3d362c;margin:0;">BAANKNET has the PSB monopoly, official trust and no price. We must be complementary — non-PSB coverage, analytics, service — rather than a paid substitute for something free.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:19px;margin:0 0 8px;">Willingness to pay is unproven at this price point</h3>
+          <p style="font-size:14px;line-height:1.6;color:#3d362c;margin:0;">No Indian competitor charges retail buyers for auction data, so our 3% conversion assumption has no local benchmark. EIG proves the model in the UK on a professional buyer base, not a retail one.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:19px;margin:0 0 8px;">Liability on advice</h3>
+          <p style="font-size:14px;line-height:1.6;color:#3d362c;margin:0;">A "fair value verdict" and a "risk score" invite claims when a deal sours. Product copy, disclaimers, professional indemnity cover and a clear line between information and advice all need legal review before launch.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:19px;margin:0 0 8px;">Concierge margin drag</h3>
+          <p style="font-size:14px;line-height:1.6;color:#3d362c;margin:0;">Half our modelled revenue is a services business wearing a platform's valuation multiple. Investors will discount it. Either automate the diligence steps aggressively or present concierge honestly as a margin-diluting acquisition channel.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:19px;margin:0 0 8px;">Data-source fragility</h3>
+          <p style="font-size:14px;line-height:1.6;color:#3d362c;margin:0;">Ingestion depends on portals and newspaper notices whose formats change without warning and whose terms of use may restrict scraping. Direct lender agreements are the durable answer and should start in Year 1.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= SOURCES ======================= -->
+    <section style="border-top:3px double #17140f;padding:44px 0 0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8a3324;margin:0 0 14px;">Sources</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:32px;line-height:1.15;margin:0 0 24px;">Everything cited above, with dates</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0 40px;font-size:13.5px;line-height:1.7;">
+        <ol style="margin:0;padding:0 0 0 20px;color:#3d362c;">
+          <li><a href="https://baanknet.com/" target="_blank" rel="noopener">BAANKNET portal</a> — live counters: properties listed, auctions conducted, value auctioned, upcoming auctions. Read 15 Aug 2026.</li>
+          <li><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2114503&amp;reg=48&amp;lang=2" target="_blank" rel="noopener">PIB / Department of Financial Services</a> — launch of BAANKNET and e-BKray; platform features; all 12 PSBs and IBBI onboarded. Mar 2025.</li>
+          <li><a href="https://www.business-standard.com/industry/banking/property-e-auctions-for-psbs-triple-under-baanknet-125072301367_1.html" target="_blank" rel="noopener">Business Standard</a> — successful bid value ₹15,731 cr vs ₹5,267 cr; success rate 14.7% vs 9%; UCO Bank on photos, video and one-time settlements. 26 Jul 2025.</li>
+          <li><a href="https://www.business-standard.com/finance/news/recovery-under-ibc-improves-to-nearly-37-per-cent-in-fy25-despite-fewer-cases-125122900840_1.html" target="_blank" rel="noopener">Business Standard on RBI Trend &amp; Progress 2024-25</a> — SARFAESI cases, amounts and recoveries FY24 and FY25; recovery rates. 29 Dec 2025.</li>
+          <li><a href="https://www.theasianbanker.com/press-releases/indian-banking-sector-remains-resilient-in-2024-25-rbi-report-shows" target="_blank" rel="noopener">RBI, Report on Trend and Progress of Banking in India 2024-25</a> — balance sheet growth, CRAR. Dec 2025.</li>
+          <li><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2225442&amp;reg=3&amp;lang=1" target="_blank" rel="noopener">PIB</a> — gross NPA ratio 2.15% for domestic operations as at 30 Sep 2025, by bank group.</li>
+          <li><a href="https://www.business-standard.com/finance/news/indian-scheduled-commercial-banks-gross-npa-ratio-at-15-year-low-125070101394_1.html" target="_blank" rel="noopener">Business Standard on RBI Financial Stability Report</a> — GNPA 2.3% at Mar 2025 vs 2.8% a year earlier. 1 Jul 2025.</li>
+          <li><a href="https://ibbi.gov.in/uploads/psb_alliance/FAQ%20for%20PSB%20Alliance%20(As%20on%2021.07.2025).pdf" target="_blank" rel="noopener">IBBI</a> — FAQ on the BAANKNET listing and auction portal; PSB Alliance ownership; benefits to insolvency professionals. 21 Jul 2025.</li>
+        </ol>
+        <ol style="margin:0;padding:0 0 0 20px;color:#3d362c;" start="9">
+          <li><a href="https://www.bankeauctions.com/" target="_blank" rel="noopener">bankeauctions.com</a> (C1 India) — positioning and bank coverage. Read Aug 2026.</li>
+          <li><a href="https://www.similarweb.com/website/bankeauctions.com/competitors/" target="_blank" rel="noopener">Similarweb</a> — monthly visit estimates for eauctionsindia.com (660.3K), ibapi.in (88K), samil.in (191.5K), Oct 2024. Estimates, not audited figures.</li>
+          <li><a href="https://www.auctiontiger.in/" target="_blank" rel="noopener">auctiontiger.in</a> — self-reported auction volumes. Read Aug 2026.</li>
+          <li><a href="https://foreclosureindia.com/bank-auctions/chennai" target="_blank" rel="noopener">ForeclosureIndia</a> (466 Chennai lots), <a href="https://findauction.in/bank-property/chennai" target="_blank" rel="noopener">FindAuction</a> (3,476), <a href="https://bankauctiondeals.com/metro/chennai" target="_blank" rel="noopener">BankAuctionDeals</a> (985–2,136) — conflicting Chennai counts, read Aug 2026.</li>
+          <li><a href="https://listwithclever.com/auction-com/" target="_blank" rel="noopener">Clever Real Estate</a> — Auction.com scale: 7.5M registered users, 12,000+ auctions a year, 533,000 properties sold worth $66bn; Xome and Hubzu fee structures. 2025.</li>
+          <li><a href="https://realestatebees.com/guides/software/listing-sites/auctions/" target="_blank" rel="noopener">Real Estate Bees</a> — Hubzu listing detail, neighbourhood data, mobile outbid alerts, buyer's premium ranges. 2026 review.</li>
+          <li><a href="https://www.realestateskills.com/blog/hubzu-review" target="_blank" rel="noopener">Real Estate Skills</a> — Hubzu auto-bid and backup offers; Altisource ownership. Jan 2026.</li>
+          <li><a href="https://www.eigpropertyauctions.co.uk/about" target="_blank" rel="noopener">Essential Information Group</a> — 850,000+ properties, 38,000 lots a year worth over £4.7bn, 530+ auctioneers, Auction Insights on 600,000+ sold lots. Read Aug 2026.</li>
+          <li><a href="https://www.imarcgroup.com/india-proptech-market" target="_blank" rel="noopener">IMARC</a> ($1.31bn, 2025) and <a href="https://www.researchandmarkets.com/report/india-proptech-market" target="_blank" rel="noopener">Research and Markets</a> ($1.66bn, 2025) — India proptech market size. The two disagree by 27% on the same year; we cite both rather than choosing.</li>
+        </ol>
+      </div>
+      <p style="font-size:14px;line-height:1.7;color:#3d362c;margin:34px 0 0;max-width:80ch;text-wrap:pretty;"><strong>On method.</strong> Sections 02, 04 and 05 rest on cited sources. Sections 03, 06, 07, 08 and 09 are our own analysis and construction — clearly the work of this paper rather than of any source — and the figures in them are assumptions to be attacked. Where sources conflict, both are shown. Portal self-reported counters are labelled as such, and traffic estimates are third-party approximations. Nothing in Section 06 should be quoted to an investor without the assumption table beside it.</p>
+    </section>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
